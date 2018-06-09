@@ -168,13 +168,15 @@ class DiagrammScriptCreator
 		echo "['".$r[0]."', "; 
 		for ($i=0;$i<count($sensors);$i++)
 			{
-			$v=(0+$r[$i+1]);
+			$v=(0+$r[$i+1]);			
 			switch ($type)
 			{
 			case 1:
+				echo ("11");
 				$v=$v+$sensors[i]->tempDelta;			
 				break;
 			case 2:
+				echo ("22");
 				$v=$v+$sensors[i]->humDelta;
 				break;
 			}
