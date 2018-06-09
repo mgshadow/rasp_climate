@@ -172,12 +172,10 @@ class DiagrammScriptCreator
 			switch ($type)
 			{
 			case 1:
-				echo ("11");
-				$v=$v+$sensors[i]->tempDelta;			
+				$v=$sensors[i]->tempDelta;			
 				break;
 			case 2:
-				echo ("22");
-				$v=$v+$sensors[i]->humDelta;
+				$v=$sensors[i]->humDelta;
 				break;
 			}
 			if ($v>$max)
