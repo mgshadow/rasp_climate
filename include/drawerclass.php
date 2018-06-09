@@ -171,10 +171,10 @@ class DiagrammScriptCreator
 			switch ($type)
 			{
 			case 1:
-				$v=(float)$sensors[i]->tempDelta+$r[$i+1];			
+				$v=(float)$sensors[i]->tempDelta;			
 				break;
 			case 2:
-				$v=(float)$sensors[i]->humDelta+$r[$i+1];
+				$v=(float)$sensors[i]->humDelta;
 				break;
 			}
 			if ($v>$max)
