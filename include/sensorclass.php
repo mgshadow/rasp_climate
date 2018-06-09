@@ -164,7 +164,7 @@ class Sensor
     
         
     //-----Initialization -------
-    function Sensor($p, $col, $name, $t, $hd, $td)
+    function Sensor($p, $col, $name, $t, $td, $hd)
     	{
 		$this->title=$t;
         $this->pin = $p;
