@@ -172,7 +172,6 @@ class Sensor
         $this->name = $name;
 	$this->humDelta = $hd;
 	$this->tempDelta = $td;
-	   echo ("123456:".$this->humDelta);
         
         $this->tempWarningMin=15;
     	$this->tempWarningMax=35;
