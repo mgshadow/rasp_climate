@@ -34,7 +34,7 @@ $errorcount+=$sensor1->getErrorCount($db);
 </div>
 <div class="container">
 <?php
-echo ("Messung: <b>".date("Y-m-d h:i")."</b>");
+echo ("Messung: <b>".date("Y-m-d H:i")."</b>");
 if ($errorcount>0)
 	echo ("<h3>Im Fehlerprotokoll stehen für diese Sensoren $errorcount Fehler an</h3>");
 
