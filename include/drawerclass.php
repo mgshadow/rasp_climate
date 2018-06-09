@@ -111,7 +111,7 @@ class DiagrammScriptCreator
 			{
 			case 1:
 				$field="temperature";
-				$title="Temperatur";
+				$title="Temperatur";				
 				break;
 			case 2:
 				$field="humidity";
@@ -169,6 +169,15 @@ class DiagrammScriptCreator
 		for ($i=0;$i<count($sensors);$i++)
 			{
 			$v=(0+$r[$i+1]);
+			switch ($type)
+			{
+			case 1:
+				$v=$v+$sensors[i]->tempDelta;			
+				break;
+			case 2:
+				$v=$v+$sensors[i]->humDelta;
+				break;
+			}
 			if ($v>$max)
 				$max=$v;
 			if ($v<$min)
