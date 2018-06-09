@@ -158,7 +158,7 @@ class DiagrammScriptCreator
         var data = google.visualization.arrayToDataTable([
           ['TIME',<?php
 	for ($i=0;$i<count($sensors);$i++)
-		echo("'".$sensors[$i]->name."123456:".$sensors[$i]->tempDelta."',");
+		echo("'".$sensors[$i]->name."',");
 
 	?> ],<?php 
 	$min=99;
@@ -171,10 +171,10 @@ class DiagrammScriptCreator
 			switch ($type)
 			{
 			case 1:
-				$v=(float)$sensors[i]->tempDelta;			
+				$v=$sensors[$i]->tempDelta;			
 				break;
 			case 2:
-				$v=(float)$sensors[i]->humDelta;
+				$v=$sensors[i]->humDelta;
 				break;
 			}
 			if ($v>$max)
