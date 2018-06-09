@@ -158,7 +158,7 @@ class DiagrammScriptCreator
         var data = google.visualization.arrayToDataTable([
           ['TIME',<?php
 	for ($i=0;$i<count($sensors);$i++)
-		echo("'".$sensors[$i]->name."',");
+		echo("'".$sensors[$i]->name."123456:".$sensors[$i]->humDelta."',");
 
 	?> ],<?php 
 	$min=99;
