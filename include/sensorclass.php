@@ -100,13 +100,13 @@ class SensorFactory
 		
 	 static function getInsideSensor()
 		{
-		$ret=new Sensor(8, "black", "innen", "Innenbereich");
+		$ret=new Sensor(8, "black", "innen", "Innenbereich",0,0);
 		return $ret;
 		}
 		
 	 static function getOutsideSensor()
 		{
-		$ret=new Sensor(7, "grey", "aussen", "Aussenbereich");
+		$ret=new Sensor(7, "grey", "aussen", "Aussenbereich",0,0);
 		$ret->tempWarningMin=-30;
 		$ret->tempWarningMax=40;
 		$ret->humWarningMin=30;
@@ -118,13 +118,13 @@ class SensorFactory
 	
 	 static function getBox1Sensor()
 		{
-		$ret=new Sensor(9, "blue", "gross", "grosses Zelt");
+		$ret=new Sensor(9, "blue", "gross", "grosses Zelt",0,0);
 		return $ret;
 		}
 		
 	 static function getBox2Sensor()
 		{
-		$ret=new Sensor(21, "green", "klein", "kleines Zelt");
+		$ret=new Sensor(21, "green", "klein", "kleines Zelt",0,0);
 		return $ret;
 		}	
 	}
@@ -159,15 +159,19 @@ class Sensor
     var $humYellowTo;
     var $humRedFrom;
     var $humRedTo;
+    var $humDelta;
+    var $tempDelta;
     
         
     //-----Initialization -------
-    function Sensor($p, $col, $name, $t)
+    function Sensor($p, $col, $name, $t, $hd, $td)
     	{
 		$this->title=$t;
         $this->pin = $p;
         $this->color = $col;
         $this->name = $name;
+	$this->humDelta = $hd;
+	$this->tempDelta = $td;
         
         $this->tempWarningMin=15;
     	$this->tempWarningMax=35;
@@ -190,6 +194,7 @@ class Sensor
     	$this->humYellowTo=50;
     	$this->humRedFrom=0;
     	$this->humRedTo=30;
+	
 	    
 	    
 	       
@@ -210,8 +215,8 @@ class Sensor
 			{
 			if ($row[2]<10)
 				{
-				$t=$row[0];
-				$h=$row[1];
+				$t=$row[0]+$this->tempDelta;
+				$h=$row[1]+$this->humDelta;
 				}
 			$a=$row[2];
 			$d=$row[3];
