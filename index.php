@@ -3,27 +3,37 @@
 
 include("./include/sensorclass.php");
 include("./include/drawerclass.php");
-echo "<br> init ".date("H:i:s");
+
 
 $db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
 mysqli_select_db($db, "datalogger"); 
-echo "<br> db connected ".date("H:i:s");
+
 $creator=new DiagrammScriptCreator($db);
-echo "<br> creator done ".date("H:i:s");
+
+echo "<br> getting sensors ".date("H:i:s");
 $inSensor=SensorFactory::getInsideSensor();
-$inValue=$inSensor->getValue($db);
-$inColor=$creator->getValueColor($inSensor, $inValue);
-echo "<br> invalue done ".date("H:i:s");
+
+
 $outSensor=SensorFactory::getOutsideSensor();
-$outValue=$outSensor->getValue($db);
-$outColor=$creator->getValueColor($outSensor, $outValue);
-echo "<br> outvalue done ".date("H:i:s");
+
+
 $box1Sensor=SensorFactory::getBox1Sensor();
-$box1Value=$box1Sensor->getValue($db);
-$box1Color=$creator->getValueColor($box1Sensor, $box1Value);
+
 $box2Sensor=SensorFactory::getBox2Sensor();
+echo "<br> getting values ".date("H:i:s");
+
+$inValue=$inSensor->getValue($db);
+$outValue=$outSensor->getValue($db);
+$box1Value=$box1Sensor->getValue($db);
 $box2Value=$box2Sensor->getValue($db);
+echo "<br> getting colors ".date("H:i:s");
+
+$inColor=$creator->getValueColor($inSensor, $inValue);
+$outColor=$creator->getValueColor($outSensor, $outValue);
+$box1Color=$creator->getValueColor($box1Sensor, $box1Value);
 $box2Color=$creator->getValueColor($box2Sensor, $box2Value);
+echo "<br> getting errors ".date("H:i:s");
+
 $errorcount=0;
 $errorcount+=$inSensor->getErrorCount($db);
 $errorcount+=$outSensor->getErrorCount($db);
