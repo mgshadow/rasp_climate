@@ -1,4 +1,6 @@
 <?php
+echo "V1.0.0 last build date: ".date ("Y-m-d H:i:s", filemtime('index.php'))."<br>";
+
 echo '
 <a href="index.php" tooltip title="HOME" alt="HOME">
 <span class="fa-stack fa-3x">
