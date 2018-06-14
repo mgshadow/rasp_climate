@@ -3,16 +3,21 @@
 
 include("./include/sensorclass.php");
 include("./include/drawerclass.php");
+echo "<br> init ".date("H:i:s");
 
 $db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
 mysqli_select_db($db, "datalogger"); 
+echo "<br> db connected ".date("H:i:s");
 $creator=new DiagrammScriptCreator($db);
+echo "<br> creator done ".date("H:i:s");
 $inSensor=SensorFactory::getInsideSensor();
 $inValue=$inSensor->getValue($db);
 $inColor=$creator->getValueColor($inSensor, $inValue);
+echo "<br> invalue done ".date("H:i:s");
 $outSensor=SensorFactory::getOutsideSensor();
 $outValue=$outSensor->getValue($db);
 $outColor=$creator->getValueColor($outSensor, $outValue);
+echo "<br> outvalue done ".date("H:i:s");
 $box1Sensor=SensorFactory::getBox1Sensor();
 $box1Value=$box1Sensor->getValue($db);
 $box1Color=$creator->getValueColor($box1Sensor, $box1Value);
