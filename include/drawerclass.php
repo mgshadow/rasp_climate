@@ -77,8 +77,8 @@ class DiagrammScriptCreator
 		else
 			{
 			$colorText='#FF0000';
-			$colorBack='#FF0000';
-			$colorStatus='#FF9999';			
+			$colorBack='#FF5555';
+			$colorStatus='#AA0000';			
 			$colorTemp=$colorText;
 			$colorHum=$colorText;				
 
@@ -227,7 +227,7 @@ class DiagrammScriptCreator
 options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsConfiguration'] = 'auto';
       }
     </script>
-<div id="<?php echo($divname); ?>" style="width: 750px; height: 400px;"></div>
+<div id="<?php echo($divname); ?>" style="width: 850px; height: 400px;"></div>
 
 <?php
 		}

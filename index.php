@@ -1,6 +1,5 @@
 ﻿<HTML>
 <?PHP
-include("./include/membersite_config.php");
 
 include("./include/sensorclass.php");
 include("./include/drawerclass.php");
@@ -48,7 +47,7 @@ $errorcount+=$box2Sensor->getErrorCount($db);
 <div class="container">
 <?php
 
-echo ("Messung: <b>".date("Y-m-d H:i")."</b>");
+echo ("Messung: <b>".date("Y-m-d H:i")."</b><br>");
 
 if ($errorcount>0)
 	echo ("<h3>Im Fehlerprotokoll stehen für diese Sensoren $errorcount Fehler an</h3>");
@@ -247,16 +246,15 @@ if ($errorcount>0)
        <?php $creator->CreateGauge($box2Sensor); ?>
        </svg>
 </svg>
+</div>
 
-<div class="container">
 	<?php  $creator->CreateXY(array($outSensor,$inSensor, $box1Sensor,$box2Sensor), 3); ?>
-</div>
-<div class="container">
+
+
 	<?php  $creator->CreateXY(array($outSensor,$inSensor, $box1Sensor,$box2Sensor), 24); ?>
-</div>
-<div class="container">
+
 	<?php  $creator->CreateXY(array($outSensor,$inSensor, $box1Sensor,$box2Sensor), 24*4); ?>
-</div>
+
 
 <div class="container"><hr>
 <?php include 'footer.php';?></div>

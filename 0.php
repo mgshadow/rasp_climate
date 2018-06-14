@@ -1,6 +1,5 @@
 <?PHP
-include("./include/membersite_config.php");
-include("./include/include.php");
+
 include("./include/sensorclass.php");
 include("./include/drawerclass.php");
 
