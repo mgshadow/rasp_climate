@@ -77,8 +77,8 @@ class DiagrammScriptCreator
 		else
 			{
 			$colorText='#FF0000';
-			$colorBack='#FF5555';
-			$colorStatus='#AA0000';			
+			$colorBack='#CE8888';
+			$colorStatus='#FF0000';			
 			$colorTemp=$colorText;
 			$colorHum=$colorText;				
 
@@ -344,6 +344,8 @@ options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsC
     <rect
        y="0"
        x="0"
+	   rx="20"
+	   ry="20"
        height="150"
        width="200"
        id="rect6143"
