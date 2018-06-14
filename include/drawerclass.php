@@ -235,9 +235,9 @@ options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsC
 	
 		
 	
-	function CreateGauge( $sensor)
+	function CreateGauge( $sensor, $ovalue)
 		{
-		$ovalue=$sensor->getValue($this->conn);
+		//$ovalue=$sensor->getValue($this->conn);
 		$col=$this->GetValueColor($sensor, $ovalue);
 		
 		?>

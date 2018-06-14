@@ -10,7 +10,7 @@ mysqli_select_db($db, "datalogger");
 
 $creator=new DiagrammScriptCreator($db);
 
-echo "<br> getting sensors ".date("H:i:s");
+
 $inSensor=SensorFactory::getInsideSensor();
 
 
@@ -20,19 +20,19 @@ $outSensor=SensorFactory::getOutsideSensor();
 $box1Sensor=SensorFactory::getBox1Sensor();
 
 $box2Sensor=SensorFactory::getBox2Sensor();
-echo "<br> getting values ".date("H:i:s");
+
 
 $inValue=$inSensor->getValue($db);
 $outValue=$outSensor->getValue($db);
 $box1Value=$box1Sensor->getValue($db);
 $box2Value=$box2Sensor->getValue($db);
-echo "<br> getting colors ".date("H:i:s");
+
 
 $inColor=$creator->getValueColor($inSensor, $inValue);
 $outColor=$creator->getValueColor($outSensor, $outValue);
 $box1Color=$creator->getValueColor($box1Sensor, $box1Value);
 $box2Color=$creator->getValueColor($box2Sensor, $box2Value);
-echo "<br> getting errors ".date("H:i:s");
+
 
 $errorcount=0;
 $errorcount+=$inSensor->getErrorCount($db);
@@ -249,16 +249,16 @@ if ($errorcount>0)
        id="tspan15483"
        sodipodi:role="line">kleines Zelt</tspan></text>
        <svg x="10" y="10">
-       <?php $creator->CreateGauge($outSensor); ?>
+       <?php $creator->CreateGauge($outSensor, $outValue); ?>
        </svg>
        <svg x="325" y="45">
-       <?php $creator->CreateGauge($inSensor); ?>
+       <?php $creator->CreateGauge($inSensor, $inValue); ?>
        </svg>
        <svg x="194" y="170">
-       <?php $creator->CreateGauge($box1Sensor); ?>
+       <?php $creator->CreateGauge($box1Sensor, $box1Value); ?>
        </svg>
        <svg x="446" y="170">
-       <?php $creator->CreateGauge($box2Sensor); ?>
+       <?php $creator->CreateGauge($box2Sensor, $box2Value); ?>
        </svg>
 </svg>
 </div>

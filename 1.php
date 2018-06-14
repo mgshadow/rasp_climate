@@ -44,7 +44,7 @@ if ($errorcount>0)
 <div class="container">
 <h3>CURRENT CONDITIONS</h3>
   <div class="row">
-        <?php  $creator->CreateGauge($sensor1); ?>
+        <?php  $creator->CreateGauge($sensor1, $sensor1->getValue($db)); ?>
     </div>
 <hr>
     </div>
