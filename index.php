@@ -4,36 +4,21 @@
 include("./include/sensorclass.php");
 include("./include/drawerclass.php");
 
-
 $db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
 mysqli_select_db($db, "datalogger"); 
-
 $creator=new DiagrammScriptCreator($db);
-
-
 $inSensor=SensorFactory::getInsideSensor();
-
-
-$outSensor=SensorFactory::getOutsideSensor();
-
-
-$box1Sensor=SensorFactory::getBox1Sensor();
-
-$box2Sensor=SensorFactory::getBox2Sensor();
-
-
 $inValue=$inSensor->getValue($db);
-$outValue=$outSensor->getValue($db);
-$box1Value=$box1Sensor->getValue($db);
-$box2Value=$box2Sensor->getValue($db);
-
-
 $inColor=$creator->getValueColor($inSensor, $inValue);
+$outSensor=SensorFactory::getOutsideSensor();
+$outValue=$outSensor->getValue($db);
 $outColor=$creator->getValueColor($outSensor, $outValue);
+$box1Sensor=SensorFactory::getBox1Sensor();
+$box1Value=$box1Sensor->getValue($db);
 $box1Color=$creator->getValueColor($box1Sensor, $box1Value);
+$box2Sensor=SensorFactory::getBox2Sensor();
+$box2Value=$box2Sensor->getValue($db);
 $box2Color=$creator->getValueColor($box2Sensor, $box2Value);
-
-
 $errorcount=0;
 $errorcount+=$inSensor->getErrorCount($db);
 $errorcount+=$outSensor->getErrorCount($db);
@@ -249,16 +234,16 @@ if ($errorcount>0)
        id="tspan15483"
        sodipodi:role="line">kleines Zelt</tspan></text>
        <svg x="10" y="10">
-       <?php $creator->CreateGauge($outSensor, $outValue); ?>
+       <?php $creator->CreateGauge($outSensor); ?>
        </svg>
        <svg x="325" y="45">
-       <?php $creator->CreateGauge($inSensor, $inValue); ?>
+       <?php $creator->CreateGauge($inSensor); ?>
        </svg>
        <svg x="194" y="170">
-       <?php $creator->CreateGauge($box1Sensor, $box1Value); ?>
+       <?php $creator->CreateGauge($box1Sensor); ?>
        </svg>
        <svg x="446" y="170">
-       <?php $creator->CreateGauge($box2Sensor, $box2Value); ?>
+       <?php $creator->CreateGauge($box2Sensor); ?>
        </svg>
 </svg>
 </div>

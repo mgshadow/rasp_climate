@@ -235,9 +235,9 @@ options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsC
 	
 		
 	
-	function CreateGauge( $sensor, $ovalue)
+	function CreateGauge( $sensor)
 		{
-		//$ovalue=$sensor->getValue($this->conn);
+		$ovalue=$sensor->getValue($this->conn);
 		$col=$this->GetValueColor($sensor, $ovalue);
 		
 		?>
@@ -356,7 +356,7 @@ options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsC
        x="44.365494"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:35px;line-height:125%;font-family:'Gill Sans';-inkscape-font-specification:'Gill Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
        xml:space="preserve"><tspan
-         y="44.944134"
+         y="54.944134"
          x="44.365494"
          id="tspan6695"><tspan
    id="tspan12568"
@@ -369,11 +369,11 @@ options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsC
        id="text6697"><tspan
          id="tspan6699"
          x="44.365494"
-         y="86.791794"><?php echo(number_format($ovalue->hum,1)); ?> %</tspan></text>
+         y="96.791794"><?php echo(number_format($ovalue->hum,1)); ?> %</tspan></text>
     <ellipse
        ry="12.626907"
        rx="13.307865"
-       cy="34.090084"
+       cy="44.090084"
        cx="22.322277"
        id="path12404"
        style="fill:url(#radialGradient12412<?php echo ($sensor->pin);?>);fill-opacity:1;stroke:#787878;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
@@ -381,7 +381,7 @@ options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsC
        style="fill:url(#radialGradient12576<?php echo ($sensor->pin);?>);fill-opacity:1;stroke:#787878;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="ellipse12574"
        cx="22.322277"
-       cy="74.090088"
+       cy="84.090088"
        rx="13.307865"
        ry="12.626907" />
     <ellipse
@@ -392,6 +392,15 @@ options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsC
        id="ellipse12590"
        style="fill:url(#radialGradient12592<?php echo ($sensor->pin);?>);fill-opacity:1;stroke:#787878;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
+       id="text12608"
+       y="10"
+       x="44.365494"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.5px;line-height:125%;font-family:'Gill Sans';-inkscape-font-specification:'Gill Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="20"
+         x="60"
+         id="tspan12604"><?php echo($sensor->name); ?></tspan></text>
+	<text
        id="text12602"
        y="133.27911"
        x="44.365494"
