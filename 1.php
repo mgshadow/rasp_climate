@@ -6,11 +6,13 @@ include("./include/drawerclass.php");
 $db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
 mysqli_select_db($db, "datalogger"); 
 $creator=new DiagrammScriptCreator($db);
-$sensor1=SensorFactory::getBox1Sensor();
-$sensor2=SensorFactory::getInsideSensor();
+$sensor2=SensorFactory::getBox1Sensor();
+$sensor1=SensorFactory::getInsideSensor();
+$sensor3=SensorFactory::getBox2Sensor();
 $errorcount=0;
 $errorcount+=$sensor1->getErrorCount($db);
 $errorcount+=$sensor2->getErrorCount($db);
+$errorcount+=$sensor3->getErrorCount($db);
 
 
 
@@ -45,17 +47,19 @@ if ($errorcount>0)
 <h3>CURRENT CONDITIONS</h3>
   <div class="row">
         <?php  $creator->CreateGauge($sensor1); ?>
+		<?php  $creator->CreateGauge($sensor2); ?>
+		<?php  $creator->CreateGauge($sensor3); ?>
     </div>
 <hr>
     </div>
 <div class="container">
-    <?php  $creator->CreateXY(array($sensor2,$sensor1), 3); ?>
+    <?php  $creator->CreateXY(array($sensor2,$sensor1,$sensor3), 3); ?>
 </div>
 <div class="container">
-    <?php  $creator->CreateXY(array($sensor2,$sensor1), 24); ?>
+    <?php  $creator->CreateXY(array($sensor2,$sensor1,$sensor3), 24); ?>
 </div>
 <div class="container">
-    <?php  $creator->CreateXY(array($sensor2,$sensor1), 24*4); ?>
+    <?php  $creator->CreateXY(array($sensor2,$sensor1,$sensor3), 24*4); ?>
 </div>
  <?php include 'footer.php';?>
 </body>
