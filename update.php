@@ -1,3 +1,3 @@
 <?php
-system("git pull");
+
 ?>
