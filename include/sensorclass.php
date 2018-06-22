@@ -111,8 +111,22 @@ class SensorFactory
 		$ret->tempWarningMax=40;
 		$ret->humWarningMin=30;
 		$ret->humWarningMax=110;
-		$ret->tempGreenFrom=-10;
-		$ret->humGreenTo=100;
+
+		
+		$ret->tempGreenFrom=0;
+    	$ret->tempGreenTo=30;
+    	$ret->tempYellowFrom=30;
+    	$ret->tempYellowTo=35;
+    	$ret->tempRedFrom=35;
+    	$ret->tempRedTo=100;
+
+    	$ret->humGreenFrom=30;
+    	$ret->humGreenTo=80;
+    	$ret->humYellowFrom=20;
+    	$ret->humYellowTo=30;
+    	$ret->humRedFrom=0;
+    	$ret->humRedTo=10;
+		
 		return $ret;
 		}
 	
