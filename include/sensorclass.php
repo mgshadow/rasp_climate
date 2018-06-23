@@ -195,7 +195,7 @@ class Sensor
 	    $this->fallbackTemp=90.0;
 	    $this->fallbackHum=0.0; 
 	    
-		$this->tempGreenFrom=20;
+		$this->tempGreenFrom=18;
     	$this->tempGreenTo=28;
     	$this->tempYellowFrom=28;
     	$this->tempYellowTo=32;
