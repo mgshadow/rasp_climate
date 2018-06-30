@@ -54,10 +54,10 @@ function readSensor($db, $sensor)
 	return; 
 } 
 
-readSensor($db, 21); 
-readSensor($db, 9); 
-readSensor($db, 8); 
-readSensor($db, 7);
+#readSensor($db, 21); 
+#readSensor($db, 9); 
+#readSensor($db, 8); 
+#readSensor($db, 7);
 
 $inSensor=SensorFactory::getInsideSensor();
 $inValue=$inSensor->getValue($db);
