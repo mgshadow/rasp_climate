@@ -28,7 +28,7 @@ function readSensor($db)
 	{
 		$id=floor($sensor/2);#cause all sensors are redundant so e.g. sensor2 and sensor3 are on the same chip
 		selectSensor($sensor);
-		echo ("\n\t\t SensorID=$id")
+		echo ("\n\t\t SensorID=$id");
 		$output = array(); 
 		$return_var = 0; 
 		$i=1;
