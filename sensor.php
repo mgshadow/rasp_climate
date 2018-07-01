@@ -91,7 +91,7 @@ function readSensor($db)
 			
 			$q = "INSERT INTO datalogger VALUES (now(), $id, '$temp', '$humid',0)"; 
 			echo ("\n\t\t".$q);
-			#mysqli_query($db, $q); 
+			mysqli_query($db, $q); 
 		}
 		
 	}

@@ -222,7 +222,7 @@ class Sensor
     	$ht=3;
     	$a=9999;
     	$d="never";
-    	$sql = "SELECT avg(temperature), avg(humidity),max(TIMESTAMPDIFF(MINUTE,date_time,NOW())) as age, max(date_time) FROM datalogger where sensor = ".$this->pin."  GROUP BY UNIX_TIMESTAMP(date_time) DIV 600 ORDER BY date_time DESC LIMIT 1";
+    	$sql = "SELECT avg(temperature), avg(humidity),max(TIMESTAMPDIFF(MINUTE,date_time,NOW())) as age, max(date_time) FROM datalogger where sensor = ".$this->pin."  GROUP BY UNIX_TIMESTAMP(date_time) DIV 60 ORDER BY date_time DESC LIMIT 1";
 		echo ($sql);
 		$result = mysqli_query($conn, $sql);
 
