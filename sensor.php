@@ -4,8 +4,27 @@ $db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect e
 mysqli_select_db($db, "datalogger");
 echo ("<br>reading Sensor Data");
 
-function readSensor($db, $sensor) 
+selectSensor(1);
+selectSensor(8);
+
+function selectSensor($pin)
+{
+	$arr=decbin($pin);
+	for ($i=0;$i<3$i++)
+	{
+		$v=$arr[$i];
+		echo("\nSet Pin S$i to $v");
+	}
+}
+
+
+function readSensor($db) 
 { 
+	echo ("\nReading Sensors")
+	for ($sensor=0;$sensor<7;$sensor=$sensor+2)
+	{
+		
+	}
  	echo ("\nReading Sensor $sensor");
 	$output = array(); 
 	$return_var = 0; 
@@ -54,10 +73,10 @@ function readSensor($db, $sensor)
 	return; 
 } 
 
-#readSensor($db, 21); 
-#readSensor($db, 9); 
-#readSensor($db, 8); 
-#readSensor($db, 7);
+#readSensor($db, 6); 
+#readSensor($db, 4); 
+#readSensor($db, 2); 
+readSensor($db);
 
 $inSensor=SensorFactory::getInsideSensor();
 $inValue=$inSensor->getValue($db);

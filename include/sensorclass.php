@@ -100,13 +100,13 @@ class SensorFactory
 		
 	 static function getInsideSensor()
 		{
-		$ret=new Sensor(8, "black", "innen", "Innenbereich",0,0);
+		$ret=new Sensor(2, "black", "innen", "Innenbereich",0,0);
 		return $ret;
 		}
 		
 	 static function getOutsideSensor()
 		{
-		$ret=new Sensor(7, "grey", "aussen", "Aussenbereich",0,0);
+		$ret=new Sensor(0, "grey", "aussen", "Aussenbereich",0,0);
 		$ret->tempWarningMin=-30;
 		$ret->tempWarningMax=40;
 		$ret->humWarningMin=30;
@@ -132,13 +132,13 @@ class SensorFactory
 	
 	 static function getBox1Sensor()
 		{
-		$ret=new Sensor(9, "blue", "gross", "grosses Zelt",0,0);
+		$ret=new Sensor(4, "blue", "gross", "grosses Zelt",0,0);
 		return $ret;
 		}
 		
 	 static function getBox2Sensor()
 		{
-		$ret=new Sensor(21, "green", "klein", "kleines Zelt",0,0);
+		$ret=new Sensor(6, "green", "klein", "kleines Zelt",0,0);
 		return $ret;
 		}	
 	}
