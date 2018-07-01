@@ -34,13 +34,14 @@ function readSensor($db)
 		$return_var = 0; 
 		$i=1;
 		$pin=21;#connected to GPIO 21
-		#exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
+		exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
 		$bError=false;
-		$bError=true;#debug*************************************************************************************
+		#$bError=true;#debug*************************************************************************************
 		$bFound=false;
 		$j=0;
 		while (!$bError && !$bFound) 
 		{ 
+			echo (sizeof($output));
 			$j++;
 			if ($i<sizeof($output))
 			{
@@ -54,7 +55,7 @@ function readSensor($db)
 			}
 			
 			if ($j>20)
-					{	
+					{							
 						echo ("\n\t*** no Sensor Value ErrorEntry and Abort");
 						$err=new ErrorEntry($sensor,1);
 						#$err->writeToDB($db);
