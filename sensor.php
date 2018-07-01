@@ -29,7 +29,7 @@ function readSensor($db)
 	
 	echo ("\nReading Sensors");
 	
-	if (flock($fp, LOCK_EX || LOCK_NB,1)) 
+	if (flock($fp, LOCK_EX|LOCK_NB,1)) 
 	{  // acquire an exclusive lock
 		
 		for ($sensor=0;$sensor<=7;$sensor++)
