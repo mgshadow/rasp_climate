@@ -24,7 +24,7 @@ function selectSensor($pin)
 function readSensor($db) 
 { 
 	$humDelta=[-8.8,2.4,0,-30,-1,-9.8,3.5,5];
-	$tempDelta=[-0.7,-1.2,0.2,0.2,-0.1,-0.2,0.1,1.4];
+	$tempDelta=[-0.7,-1.2,0.2,0.2,-0.1,-0.2,0.1,0];
 
 
 	echo ("\nReading Sensors");
