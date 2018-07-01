@@ -97,7 +97,7 @@ function readSensor($db)
 #readSensor($db, 6); 
 #readSensor($db, 4); 
 #readSensor($db, 2); 
-readSensor($db);
+#readSensor($db);
 
 $inSensor=SensorFactory::getInsideSensor();
 $inValue=$inSensor->getValue($db);
