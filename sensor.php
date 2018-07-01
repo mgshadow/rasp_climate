@@ -5,7 +5,8 @@ mysqli_select_db($db, "datalogger");
 echo ("<br>reading Sensor Data");
 
 selectSensor(1);
-selectSensor(8);
+selectSensor(6);
+selectSensor(7);
 
 function selectSensor($pin)
 {
