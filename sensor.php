@@ -40,11 +40,11 @@ function readSensor($db)
 		$j=0;
 		while (!$bError && !$bFound) 
 		{ 
-			echo (sizeof($output));
 			$i++;
 			if ($i<sizeof($output))
 			{
-					echo("\n\t\t".$output[$i]);
+					echo("\n\t\t");
+					echo ($output[$i]);
 					if (substr($output[$i],0,1)=="H")
 					{
 						#echo("\n*Found*");
