@@ -32,7 +32,7 @@ class ErrorEntry
 #	var $count
 	function ErrorEntry($sensor, $errortype)
 		{
-		echo("\nErrorEntry($sensor,$errortype)");
+		#echo("\nErrorEntry($sensor,$errortype)");
 		$this->sensor=$sensor;
 		$this->errortype=$errortype;
 		}
