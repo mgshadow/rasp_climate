@@ -29,7 +29,7 @@ function readSensor($db)
 	
 	echo ("\nReading Sensors");
 	
-	if (flock($fp, LOCK_EX,1)) 
+	if (flock($fp, LOCK_EX | LOCK_NB,1)) 
 	{  // acquire an exclusive lock
 		
 		for ($sensor=0;$sensor<=7;$sensor++)
@@ -41,7 +41,7 @@ function readSensor($db)
 			$output = array(); 
 			$return_var = 0; 
 			$i=1;
-			$pin=21;#connected to GPIO 21
+			$pin=21;#multiplexer signal is connected to GPIO 21
 			exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
 			$bError=false;
 			#$bError=true;#debug*************************************************************************************
