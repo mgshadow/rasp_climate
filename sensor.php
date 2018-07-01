@@ -27,9 +27,8 @@ function readSensor($db)
 	for ($sensor=0;$sensor<=7;$sensor++)
 	{
 		$id=floor($sensor/2);#cause all sensors are redundant so e.g. sensor2 and sensor3 are on the same chip
+		echo ("\n\t\tSensorID=$id");
 		selectSensor($sensor);
-		
-		echo ("\n\t\t SensorID=$id");
 		$output = array(); 
 		$return_var = 0; 
 		$i=1;
@@ -45,10 +44,10 @@ function readSensor($db)
 			$i++;
 			if ($i<sizeof($output))
 			{
-					echo($output[$i]);
+					echo("\n\t\t".$output[$i]);
 					if (substr($output[$i],0,1)=="H")
 					{
-						echo("\n*Found*");
+						#echo("\n*Found*");
 						$bFound=true;
 					}
 					 
@@ -91,7 +90,7 @@ function readSensor($db)
 				}
 			
 			$q = "INSERT INTO datalogger VALUES (now(), $id, '$temp', '$humid',0)"; 
-			echo ("\n\t\t\t".$q);
+			echo ("\n\t\t".$q);
 			#mysqli_query($db, $q); 
 		}
 		
