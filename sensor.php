@@ -42,6 +42,7 @@ function readSensor($db)
 			{
 					if (substr($output[$i],0,1)!="H")
 					{
+						echo($output[$i]);
 						$bFound=true;
 					}
 					$i++; 
@@ -81,7 +82,7 @@ function readSensor($db)
 				}
 			
 			$q = "INSERT INTO datalogger VALUES (now(), $id, '$temp', '$humid',0)"; 
-			echo ("\n".$q);
+			echo ("\n\t\t\t".$q);
 			#mysqli_query($db, $q); 
 		}
 		
