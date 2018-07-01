@@ -33,6 +33,7 @@ function readSensor($db)
 		$id=floor($sensor/2);#cause all sensors are redundant so e.g. sensor2 and sensor3 are on the same chip
 		echo ("\n\t\tSensorID=$id");
 		selectSensor($sensor);
+		sleep(2);
 		$output = array(); 
 		$return_var = 0; 
 		$i=1;
@@ -60,10 +61,10 @@ function readSensor($db)
 			
 			if ($i>20)
 					{	
-						sleep(5);
+						
 						echo ("\n\t*** no Sensor Value ErrorEntry and Abort");
 						$err=new ErrorEntry($id,1);
-						#$err->writeToDB($db);
+						$err->writeToDB($db);
 						$bError=true;;
 					}
 		}
