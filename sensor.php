@@ -20,7 +20,7 @@ function selectSensor($pin)
 
 function readSensor($db) 
 { 
-	echo ("\nReading Sensors")
+	echo ("\nReading Sensors");
 	for ($sensor=0;$sensor<7;$sensor=$sensor+2)
 	{
 		
@@ -76,7 +76,7 @@ function readSensor($db)
 #readSensor($db, 6); 
 #readSensor($db, 4); 
 #readSensor($db, 2); 
-readSensor($db);
+#readSensor($db);
 
 $inSensor=SensorFactory::getInsideSensor();
 $inValue=$inSensor->getValue($db);
