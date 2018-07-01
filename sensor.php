@@ -70,7 +70,7 @@ function readSensor($db)
 				$err=new ErrorEntry($sensor,20);
 				$err->writeToDB($db);
 				}
-			$id=floor($i/2);
+			$id=floor($sensor/2);
 			$q = "INSERT INTO datalogger VALUES (now(), $id, '$temp', '$humid',0)"; 
 			echo ("\n".$q);
 			mysqli_query($db, $q); 
