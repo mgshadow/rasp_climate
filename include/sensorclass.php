@@ -17,6 +17,8 @@ Class ErrorTextFactory
 			return "Temperatur zu gering.";
 			case 21:
 			return "Temperatur zu hoch.";
+			case 50:
+			return "Messung übersprungen";
 			default:
 			return "unbekannte Fehlernummer $errortype";
 			}

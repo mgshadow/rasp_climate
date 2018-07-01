@@ -114,7 +114,9 @@ function readSensor($db)
 	}
 	else
 	{
-		echo "Couldn't get the lock!, skipping";
+		echo "\nCouldn't get the lock!, skipping";
+		$err=new ErrorEntry(99,50);
+		$err->writeToDB($db);
 	}
 	
 	fclose($fp);
