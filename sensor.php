@@ -15,7 +15,7 @@ function selectSensor($pin)
 	{
 		$v=0;
 		if ($i<strlen($arr))
-			$v=$arr[strlen($arr)-$i];
+			$v=$arr[strlen($arr)-$i-1];
 		echo("\nSet Pin S$i to $v");
 	}
 }
