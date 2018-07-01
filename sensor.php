@@ -10,9 +10,12 @@ selectSensor(8);
 function selectSensor($pin)
 {
 	$arr=decbin($pin);
+	echo ("\nSelect Sensor $pin : $arr");	
 	for ($i=0;$i<3;$i++)
 	{
-		$v=$arr[$i];
+		$v=0;
+		if ($i<strlen($arr))
+			$v=$arr[$i];
 		echo("\nSet Pin S$i to $v");
 	}
 }
