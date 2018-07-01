@@ -23,6 +23,10 @@ function selectSensor($pin)
 
 function readSensor($db) 
 { 
+	$tempDelta=[0,0,0,0,0,0,0,0];
+	$humDelta=[0,0,0,0,0,0,0,0];
+
+
 	echo ("\nReading Sensors");
 	for ($sensor=0;$sensor<=7;$sensor++)
 	{
@@ -77,7 +81,7 @@ function readSensor($db)
 				$err=new ErrorEntry($id,10);
 				$err->writeToDB($db);
 				}
-			$temp=substr($output[$i],33,5); 
+			$temp=floatval(substr($output[$i],33,5))+$humDelta[$sensor]; 
 			if ((int)$temp>$osensor->tempWarningMax)
 				{
 				$err=new ErrorEntry($id,21);
