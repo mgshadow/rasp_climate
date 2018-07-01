@@ -24,7 +24,7 @@ function selectSensor($pin)
 function readSensor($db) 
 { 
 	echo ("\nReading Sensors");
-	for ($sensor=0;$sensor<7;$sensor=$sensor++)
+	for ($sensor=0;$sensor<7;$sensor++)
 	{
 		selectSensor($sensor);
 		
