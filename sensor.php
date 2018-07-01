@@ -2,7 +2,6 @@
 include("include/sensorclass.php");
 $db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
 mysqli_select_db($db, "datalogger");
-echo ("<br>reading Sensor Data");
 
 function selectSensor($pin)
 {
@@ -55,6 +54,13 @@ function readSensor($db)
 						#echo("\n*Found*");
 						$bFound=true;
 					}
+					
+					if (substr($output[$i],0,4)=="Lock")
+					{
+						#echo("\n*Found*");
+						$bError=true;
+						$sensor--;
+					}
 					 
 					
 			}
@@ -103,9 +109,7 @@ function readSensor($db)
 	return; 
 } 
 
-#readSensor($db, 6); 
-#readSensor($db, 4); 
-#readSensor($db, 2); 
+
 readSensor($db);
 
 $inSensor=SensorFactory::getInsideSensor();
