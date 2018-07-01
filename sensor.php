@@ -110,7 +110,7 @@ function readSensor($db)
 } 
 
 
-readSensor($db);
+#readSensor($db);
 
 $inSensor=SensorFactory::getInsideSensor();
 $inValue=$inSensor->getValue($db);
