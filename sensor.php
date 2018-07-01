@@ -34,8 +34,15 @@ function readSensor($db)
 		$pin=21;#connected to GPIO 21
 		exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
 		$bError=false;
-		while (!$bError && substr($output[$i],0,1)!="H" && $i<sizeof($output)-1) 
+		$bFound=false;
+		while (!$bError && !$bFound) 
 		{ 
+			if ($i<sizeof($output))
+			{
+					if (substr($output[$i],0,1)!="H")
+					{
+						$bFound=true;
+					}
 					$i++; 
 					if ($i>20)
 					{	
@@ -44,8 +51,9 @@ function readSensor($db)
 						$err->writeToDB($db);
 						$bError=true;;
 					}
+			}
 		}
-		if (!$bError)
+		if ($bFound)
 		{
 			$osensor=SensorFactory::getSensor($sensor);
 			$humid=substr($output[$i],11,5); 
@@ -70,10 +78,10 @@ function readSensor($db)
 				$err=new ErrorEntry($sensor,20);
 				$err->writeToDB($db);
 				}
-			$id=floor($sensor/2);
+			$id=floor($sensor/2);#cause all sensors are redundant so e.g. sensor2 and sensor3 are on the same chip
 			$q = "INSERT INTO datalogger VALUES (now(), $id, '$temp', '$humid',0)"; 
 			echo ("\n".$q);
-			mysqli_query($db, $q); 
+			#mysqli_query($db, $q); 
 		}
 		
 	}
