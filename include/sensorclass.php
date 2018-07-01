@@ -87,13 +87,13 @@ class SensorFactory
 		{
 		switch ($pin)
 			{
-			case 7:
+			case 0:
 			return SensorFactory::getOutsideSensor();
-			case 8:
+			case 2:
 			return SensorFactory::getInsideSensor();
-			case 9:
+			case 4:
 			return SensorFactory::getBox1Sensor();
-			case 21:
+			case 6:
 			return SensorFactory::getBox2Sensor();
 			}
 		}	
