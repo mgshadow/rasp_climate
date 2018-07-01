@@ -65,7 +65,7 @@ function readSensor($db)
 					
 			}
 			
-			if ($i>10)
+			if ($i>6)
 					{	
 						
 						echo ("\n\t*** no Sensor Value ErrorEntry and Abort");
