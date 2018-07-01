@@ -34,7 +34,7 @@ function readSensor($db)
 		$pin=21;#connected to GPIO 21
 		exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
 		$bError=false;
-		while (!$bError && substr($output[$i],0,1)!="H") 
+		while (!$bError && substr($output[$i],0,1)!="H" && $i<sizeof($output)-1) 
 		{ 
 					$i++; 
 					if ($i>20)
