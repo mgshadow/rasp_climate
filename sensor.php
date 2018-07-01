@@ -36,8 +36,10 @@ function readSensor($db)
 		exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
 		$bError=false;
 		$bFound=false;
+		$j=0;
 		while (!$bError && !$bFound) 
 		{ 
+			$j++;
 			if ($i<sizeof($output))
 			{
 					if (substr($output[$i],0,1)=="H")
@@ -46,14 +48,16 @@ function readSensor($db)
 						$bFound=true;
 					}
 					$i++; 
-					if ($i>20)
+					
+			}
+			
+			if ($j>20)
 					{	
 						echo ("\n\t*** no Sensor Value ErrorEntry and Abort");
 						$err=new ErrorEntry($sensor,1);
-						$err->writeToDB($db);
+						#$err->writeToDB($db);
 						$bError=true;;
 					}
-			}
 		}
 		if ($bFound)
 		{
