@@ -24,8 +24,9 @@ function selectSensor($pin)
 function readSensor($db) 
 { 
 	echo ("\nReading Sensors");
-	for ($sensor=0;$sensor<7;$sensor++)
+	for ($sensor=0;$sensor<=7;$sensor++)
 	{
+		$id=floor($sensor/2);#cause all sensors are redundant so e.g. sensor2 and sensor3 are on the same chip
 		selectSensor($sensor);
 		
 		$output = array(); 
@@ -55,7 +56,7 @@ function readSensor($db)
 		}
 		if ($bFound)
 		{
-			$osensor=SensorFactory::getSensor($sensor);
+			$osensor=SensorFactory::getSensor($id);
 			$humid=substr($output[$i],11,5); 
 			if ((int)$humid>$osensor->humWarningMax)
 				{
@@ -78,7 +79,7 @@ function readSensor($db)
 				$err=new ErrorEntry($sensor,20);
 				$err->writeToDB($db);
 				}
-			$id=floor($sensor/2);#cause all sensors are redundant so e.g. sensor2 and sensor3 are on the same chip
+			
 			$q = "INSERT INTO datalogger VALUES (now(), $id, '$temp', '$humid',0)"; 
 			echo ("\n".$q);
 			#mysqli_query($db, $q); 
