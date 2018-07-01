@@ -33,8 +33,9 @@ function readSensor($db)
 		$return_var = 0; 
 		$i=1;
 		$pin=21;#connected to GPIO 21
-		exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
+		#exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
 		$bError=false;
+		$bError=true;#debug*************************************************************************************
 		$bFound=false;
 		$j=0;
 		while (!$bError && !$bFound) 
@@ -97,7 +98,7 @@ function readSensor($db)
 #readSensor($db, 6); 
 #readSensor($db, 4); 
 #readSensor($db, 2); 
-#readSensor($db);
+readSensor($db);
 
 $inSensor=SensorFactory::getInsideSensor();
 $inValue=$inSensor->getValue($db);
