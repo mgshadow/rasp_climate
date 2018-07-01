@@ -24,7 +24,7 @@ function selectSensor($pin)
 function readSensor($db) 
 { 
 	echo ("\nReading Sensors");
-	for ($sensor=0;$sensor<7;$sensor=$sensor+2)
+	for ($sensor=0;$sensor<7;$sensor=$sensor++)
 	{
 		selectSensor($sensor);
 		
@@ -70,8 +70,8 @@ function readSensor($db)
 				$err=new ErrorEntry($sensor,20);
 				$err->writeToDB($db);
 				}
-			
-			$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temp', '$humid',0)"; 
+			$id=floor($i/2)
+			$q = "INSERT INTO datalogger VALUES (now(), $id, '$temp', '$humid',0)"; 
 			echo ("\n".$q);
 			mysqli_query($db, $q); 
 		}
