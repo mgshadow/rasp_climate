@@ -4,21 +4,17 @@ $db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect e
 mysqli_select_db($db, "datalogger");
 echo ("<br>reading Sensor Data");
 
-selectSensor(1);
-selectSensor(6);
-selectSensor(7);
-
 function selectSensor($pin)
 {
 	$arr=decbin($pin);
-	echo ("\nSelect Sensor $pin : $arr");	
+	echo ("\n\tSelect Sensor $pin : $arr");	
 	for ($i=0;$i<3;$i++)
 	{
 		$j=$i+7;
 		$v=0;
 		if ($i<strlen($arr))
 			$v=$arr[strlen($arr)-$i-1];
-		echo("\nSet Pin GPIO$j : S$i to $v");
+		echo("\n\t\tSet Pin GPIO$j : S$i to $v");
 		system("gpio mode ".$j." out");
 		system("/usr/local/bin/gpio write $j $v "); 
 	}
@@ -30,53 +26,57 @@ function readSensor($db)
 	echo ("\nReading Sensors");
 	for ($sensor=0;$sensor<7;$sensor=$sensor+2)
 	{
+		selectSensor($sensor);
+		
+		$output = array(); 
+		$return_var = 0; 
+		$i=1;
+		$pin=21;#connected to GPIO 21
+		exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
+		$bError=false;
+		while (!$bError && substr($output[$i],0,1)!="H") 
+		{ 
+					$i++; 
+					if ($i>20)
+					{	
+						echo ("\n\t*** no Sensor Value ErrorEntry and Abort");
+						$err=new ErrorEntry($sensor,1);
+						$err->writeToDB($db);
+						$bError=true;;
+					}
+		}
+		if (!$bError)
+		{
+			$osensor=SensorFactory::getSensor($sensor);
+			$humid=substr($output[$i],11,5); 
+			if ((int)$humid>$osensor->humWarningMax)
+				{
+				$err=new ErrorEntry($sensor,11);
+				$err->writeToDB($db);
+				}
+			if ((int)$humid<$osensor->humWarningMin)
+				{
+				$err=new ErrorEntry($sensor,10);
+				$err->writeToDB($db);
+				}
+			$temp=substr($output[$i],33,5); 
+			if ((int)$temp>$osensor->tempWarningMax)
+				{
+				$err=new ErrorEntry($sensor,21);
+				$err->writeToDB($db);
+				}
+			if ((int)$temp<$osensor->tempWarningMin)
+				{
+				$err=new ErrorEntry($sensor,20);
+				$err->writeToDB($db);
+				}
+			
+			$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temp', '$humid',0)"; 
+			echo ("\n".$q);
+			mysqli_query($db, $q); 
+		}
 		
 	}
- 	echo ("\nReading Sensor $sensor");
-	$output = array(); 
-	$return_var = 0; 
-	$i=1;
-	exec('sudo /usr/local/bin/loldht '.$sensor, $output, $return_var); 
-  	while (substr($output[$i],0,1)!="H") 
-	{ 
-                $i++; 
-				if ($i>20)
-				{	
-					echo ("\nno Sensor Value");
-					$err=new ErrorEntry($sensor,1);
-					$err->writeToDB($db);
-					return;
-				}
-	} 
-	echo ("\nValue found");
-	$osensor=SensorFactory::getSensor($sensor);
-	$humid=substr($output[$i],11,5); 
-	if ((int)$humid>$osensor->humWarningMax)
-		{
-		$err=new ErrorEntry($sensor,11);
-		$err->writeToDB($db);
-		}
-	if ((int)$humid<$osensor->humWarningMin)
-		{
-		$err=new ErrorEntry($sensor,10);
-		$err->writeToDB($db);
-		}
-    $temp=substr($output[$i],33,5); 
-    if ((int)$temp>$osensor->tempWarningMax)
-		{
-		$err=new ErrorEntry($sensor,21);
-		$err->writeToDB($db);
-		}
-	if ((int)$temp<$osensor->tempWarningMin)
-		{
-		$err=new ErrorEntry($sensor,20);
-		$err->writeToDB($db);
-		}
-
-	$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temp', '$humid',0)"; 
-	echo ("\n".$q);
-	mysqli_query($db, $q); 
-	
 	return; 
 } 
 
