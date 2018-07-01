@@ -42,7 +42,7 @@ function readSensor($db)
 		while (!$bError && !$bFound) 
 		{ 
 			echo (sizeof($output));
-			$j++;
+			$i++;
 			if ($i<sizeof($output))
 			{
 					echo($output[$i]);
@@ -51,11 +51,11 @@ function readSensor($db)
 						echo("\n*Found*");
 						$bFound=true;
 					}
-					$i++; 
+					 
 					
 			}
 			
-			if ($j>20)
+			if ($i>20)
 					{							
 						echo ("\n\t*** no Sensor Value ErrorEntry and Abort");
 						$err=new ErrorEntry($sensor,1);
