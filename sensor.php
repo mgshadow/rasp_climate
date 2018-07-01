@@ -66,7 +66,7 @@ function readSensor($db)
 		if ($bFound)
 		{
 			$osensor=SensorFactory::getSensor($id);
-			$humid=float(substr($output[$i],11,5))+$tempDelta[$sensor]; 
+			$humid=floatval(substr($output[$i],11,5))+$tempDelta[$sensor]; 
 			if ((int)$humid>$osensor->humWarningMax)
 				{
 				$err=new ErrorEntry($id,11);
