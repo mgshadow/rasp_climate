@@ -89,18 +89,18 @@ class SensorFactory
 			{
 			case 0:
 			return SensorFactory::getOutsideSensor();
-			case 2:
+			case 1:
 			return SensorFactory::getInsideSensor();
-			case 4:
+			case 2:
 			return SensorFactory::getBox1Sensor();
-			case 6:
+			case 3:
 			return SensorFactory::getBox2Sensor();
 			}
 		}	
 		
 	 static function getInsideSensor()
 		{
-		$ret=new Sensor(2, "black", "innen", "Innenbereich",0,0);
+		$ret=new Sensor(1, "black", "innen", "Innenbereich",0,0);
 		return $ret;
 		}
 		
@@ -132,13 +132,13 @@ class SensorFactory
 	
 	 static function getBox1Sensor()
 		{
-		$ret=new Sensor(4, "blue", "gross", "grosses Zelt",0,0);
+		$ret=new Sensor(2, "blue", "gross", "grosses Zelt",0,0);
 		return $ret;
 		}
 		
 	 static function getBox2Sensor()
 		{
-		$ret=new Sensor(6, "green", "klein", "kleines Zelt",0,0);
+		$ret=new Sensor(3, "green", "klein", "kleines Zelt",0,0);
 		return $ret;
 		}	
 	}
