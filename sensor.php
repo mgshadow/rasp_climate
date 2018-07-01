@@ -25,87 +25,100 @@ function readSensor($db)
 	$humDelta=[-8.8,2.4,0,-30,-1,-9.8,3.5,5];
 	$tempDelta=[-0.7,-1.2,0.2,0.2,-0.1,-0.2,0.1,0];
 
-
+	$fp = fopen("/tmp/lock.txt", "r+");
+	
 	echo ("\nReading Sensors");
-	for ($sensor=0;$sensor<=7;$sensor++)
-	{
-		$id=floor($sensor/2);#cause all sensors are redundant so e.g. sensor2 and sensor3 are on the same chip
-		echo ("\n\tSensorID=$id");
-		selectSensor($sensor);
-		sleep(2);
-		$output = array(); 
-		$return_var = 0; 
-		$i=1;
-		$pin=21;#connected to GPIO 21
-		exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
-		$bError=false;
-		#$bError=true;#debug*************************************************************************************
-		$bFound=false;
-		$j=0;
-		while (!$bError && !$bFound) 
-		{ 
-			$i++;
-			if ($i<sizeof($output))
+	
+	if (flock($fp, LOCK_EX)) 
+	{  // acquire an exclusive lock
+		
+		for ($sensor=0;$sensor<=7;$sensor++)
+		{
+			$id=floor($sensor/2);#cause all sensors are redundant so e.g. sensor2 and sensor3 are on the same chip
+			echo ("\n\tSensorID=$id");
+			selectSensor($sensor);
+			sleep(2);
+			$output = array(); 
+			$return_var = 0; 
+			$i=1;
+			$pin=21;#connected to GPIO 21
+			exec('sudo /usr/local/bin/loldht '.$pin, $output, $return_var); 
+			$bError=false;
+			#$bError=true;#debug*************************************************************************************
+			$bFound=false;
+			$j=0;
+			while (!$bError && !$bFound) 
+			{ 
+				$i++;
+				if ($i<sizeof($output))
+				{
+						echo("\n\t\t");
+						echo ($output[$i]);
+						if (substr($output[$i],0,1)=="H")
+						{
+							#echo("\n*Found*");
+							$bFound=true;
+						}
+						
+						if (substr($output[$i],0,4)=="Lock")
+						{
+							#echo("\n*Found*");
+							$bError=true;
+							$sensor--;
+						}
+						
+						
+				}
+				
+				if ($i>6)
+						{	
+							
+							echo ("\n\t*** no Sensor Value ErrorEntry and Abort");
+							$err=new ErrorEntry($id,1);
+							$err->writeToDB($db);
+							$bError=true;;
+						}
+			}
+			if ($bFound)
 			{
-					echo("\n\t\t");
-					echo ($output[$i]);
-					if (substr($output[$i],0,1)=="H")
+				$osensor=SensorFactory::getSensor($id);
+				$humid=floatval(substr($output[$i],11,5))+$humDelta[$sensor]; 
+				if ((int)$humid>$osensor->humWarningMax)
 					{
-						#echo("\n*Found*");
-						$bFound=true;
+					$err=new ErrorEntry($id,11);
+					$err->writeToDB($db);
 					}
-					
-					if (substr($output[$i],0,4)=="Lock")
+				if ((int)$humid<$osensor->humWarningMin)
 					{
-						#echo("\n*Found*");
-						$bError=true;
-						$sensor--;
+					$err=new ErrorEntry($id,10);
+					$err->writeToDB($db);
 					}
-					 
-					
+				$temp=floatval(substr($output[$i],33,5))+$tempDelta[$sensor]; 
+				if ((int)$temp>$osensor->tempWarningMax)
+					{
+					$err=new ErrorEntry($id,21);
+					$err->writeToDB($db);
+					}
+				if ((int)$temp<$osensor->tempWarningMin)
+					{
+					$err=new ErrorEntry($id,20);
+					$err->writeToDB($db);
+					}
+				
+				$q = "INSERT INTO datalogger VALUES (now(), $id, '$temp', '$humid',0)"; 
+				echo ("\n\t\t".$q);
+				mysqli_query($db, $q); 
 			}
 			
-			if ($i>6)
-					{	
-						
-						echo ("\n\t*** no Sensor Value ErrorEntry and Abort");
-						$err=new ErrorEntry($id,1);
-						$err->writeToDB($db);
-						$bError=true;;
-					}
 		}
-		if ($bFound)
-		{
-			$osensor=SensorFactory::getSensor($id);
-			$humid=floatval(substr($output[$i],11,5))+$humDelta[$sensor]; 
-			if ((int)$humid>$osensor->humWarningMax)
-				{
-				$err=new ErrorEntry($id,11);
-				$err->writeToDB($db);
-				}
-			if ((int)$humid<$osensor->humWarningMin)
-				{
-				$err=new ErrorEntry($id,10);
-				$err->writeToDB($db);
-				}
-			$temp=floatval(substr($output[$i],33,5))+$tempDelta[$sensor]; 
-			if ((int)$temp>$osensor->tempWarningMax)
-				{
-				$err=new ErrorEntry($id,21);
-				$err->writeToDB($db);
-				}
-			if ((int)$temp<$osensor->tempWarningMin)
-				{
-				$err=new ErrorEntry($id,20);
-				$err->writeToDB($db);
-				}
-			
-			$q = "INSERT INTO datalogger VALUES (now(), $id, '$temp', '$humid',0)"; 
-			echo ("\n\t\t".$q);
-			mysqli_query($db, $q); 
-		}
-		
 	}
+	else
+	{
+		echo "Couldn't get the lock!, skipping";
+	}
+	
+	fclose($fp);
+	
 	return; 
 } 
 
