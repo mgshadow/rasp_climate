@@ -14,10 +14,13 @@ function selectSensor($pin)
 	echo ("\nSelect Sensor $pin : $arr");	
 	for ($i=0;$i<3;$i++)
 	{
+		$j=$i+7;
 		$v=0;
 		if ($i<strlen($arr))
 			$v=$arr[strlen($arr)-$i-1];
-		echo("\nSet Pin S$i to $v");
+		echo("\nSet Pin GPIO$j : S$i to $v");
+		system("gpio mode ".$j." out");
+		system("/usr/local/bin/gpio write $j $v "); 
 	}
 }
 
