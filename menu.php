@@ -1,5 +1,5 @@
 <?php
-echo "V2.0.0 last build date: ".date ("Y-m-d H:i:s", filemtime('menu.php'))."<br>";
+echo "V2.0.1 last build date: ".date ("Y-m-d H:i:s", filemtime('menu.php'))."<br>";
 
 echo '
 <a href="index.php" tooltip title="HOME" alt="HOME">
