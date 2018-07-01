@@ -120,7 +120,7 @@ class DiagrammScriptCreator
 			default:
 				return;
 			}
-		$div=$duration*40;
+		$div=$duration*60;#here is the resolution 60equals 
 		$title="$title der letzten $duration Stunden";
 		$divname=$this->generateRandomString();
 		$db=$this->conn;
