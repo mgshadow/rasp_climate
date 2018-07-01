@@ -45,9 +45,10 @@ function readSensor($db)
 			$j++;
 			if ($i<sizeof($output))
 			{
+					echo($output[$i]);
 					if (substr($output[$i],0,1)=="H")
 					{
-						echo($output[$i]);
+						echo("\n*Found*");
 						$bFound=true;
 					}
 					$i++; 
