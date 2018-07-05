@@ -147,7 +147,7 @@ class DiagrammScriptCreator
 
 	$ds=mysqli_query($db, $q); 
 	$rows=mysqli_num_rows($ds);
-	echo($sql);
+	echo($q);
 	if ($rows==0)
 		return ;
 		?>
