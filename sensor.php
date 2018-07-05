@@ -24,9 +24,9 @@ function readSensor($db)
 { 
 	$humDelta=[-8.8,2.4,0,-30,-1,-9.8,3.5,5];
 	$tempDelta=[-0.7,-1.2,0.2,0.2,-0.1,-0.2,0.1,0];
-if (!file_exists(“/tmp/lock.txt”))
+if (!file_exists("/tmp/lock.txt"))
 {
-$fp = fopen(“/tmp/lock.txt”,”w”);
+$fp = fopen("/tmp/lock.txt", "w");
 fclose($fp);
 }
 
