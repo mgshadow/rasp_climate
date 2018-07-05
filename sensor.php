@@ -118,7 +118,7 @@ $fp = fopen("/tmp/lock.txt", "r+");
 					$err->writeToDB($db);
 					}
 				
-				$q = "INSERT INTO datalogger (measureid, date_time, sensor, temperature, humidity) VALUES ($measureId, now(), $id, '$temp', '$humid',0)"; 
+				$q = "INSERT INTO datalogger (measureid, date_time, sensor, temperature, humidity, pwm) VALUES ($measureId, now(), $id, '$temp', '$humid',0)"; 
 				echo ("\n\t\t".$q);
 				mysqli_query($db, $q); 
 			}
