@@ -38,7 +38,9 @@ $fp = fopen("/tmp/lock.txt", "r+");
 	if (flock($fp, LOCK_EX | LOCK_NB)) 
 	{  // acquire an exclusive lock
 		
-		$sql="INSERT INTO `measure`(`date_time`, `active`) VALUES (now(),0);select max(id) from measure;";
+		$sql="INSERT INTO `measure`(`date_time`, `active`) VALUES (now(),0)";
+		$result = mysqli_query($db, $sql);
+		$sql="select max(id) from measure where active=0";
 		$result = mysqli_query($db, $sql);
 		$row = mysqli_fetch_array($result);
 		$measureId=$row[0];
