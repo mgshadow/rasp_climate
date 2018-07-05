@@ -38,6 +38,11 @@ $fp = fopen("/tmp/lock.txt", "r+");
 	if (flock($fp, LOCK_EX | LOCK_NB)) 
 	{  // acquire an exclusive lock
 		
+		$sql="INSERT INTO `measure`(`date_time`, `active`) VALUES (now(),0);select max(id) from measure;";
+		$result = mysqli_query($db, $sql);
+		$row = mysqli_fetch_array($result);
+		$measureId=$row[0];
+		
 		for ($sensor=0;$sensor<=7;$sensor++)
 		{
 			$id=floor($sensor/2);#cause all sensors are redundant so e.g. sensor2 and sensor3 are on the same chip
@@ -111,12 +116,17 @@ $fp = fopen("/tmp/lock.txt", "r+");
 					$err->writeToDB($db);
 					}
 				
-				$q = "INSERT INTO datalogger VALUES (now(), $id, '$temp', '$humid',0)"; 
+				$q = "INSERT INTO datalogger (measureid, date_time, sensor, temperature, humidity) VALUES ($measureId, now(), $id, '$temp', '$humid',0)"; 
 				echo ("\n\t\t".$q);
 				mysqli_query($db, $q); 
 			}
 			
 		}
+		
+		$q = "update measure set active=1 where id=$measureId"; 
+		echo ("\n\t\t".$q);
+		mysqli_query($db, $q); 
+				
 	}
 	else
 	{
