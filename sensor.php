@@ -24,7 +24,7 @@ function readSensor($db)
 { 
 	$humFactor=[0.66,0.84,1,0.66,0.92,0.75,1,1];
 	$humDelta=[0,0,0,0,0,0,0,0];
-	$tempFactor=[0,0,0,0,0,0,0,0];
+	$tempFactor=[1,1,1,1,1,1,1,1];
 	$tempDelta=[0,0,0,0,0,0,0,0];
 if (!file_exists("/tmp/lock.txt"))
 {
@@ -97,7 +97,7 @@ $fp = fopen("/tmp/lock.txt", "r+");
 			if ($bFound)
 			{
 				$osensor=SensorFactory::getSensor($id);
-				$humid=floatval(substr($output[$i],11,5))*$humFactor[$sensor]+$humDelta[$sensor]; 
+				$humid=round(floatval(substr($output[$i],11,5))*$humFactor[$sensor]+$humDelta[$sensor],1); 
 				if ((int)$humid>$osensor->humWarningMax)
 					{
 					$err=new ErrorEntry($id,11);
@@ -108,7 +108,7 @@ $fp = fopen("/tmp/lock.txt", "r+");
 					$err=new ErrorEntry($id,10);
 					$err->writeToDB($db);
 					}
-				$temp=floatval(substr($output[$i],33,5))*$tempFactor[$sensor]+$tempDelta[$sensor]; 
+				$temp=round(floatval(substr($output[$i],33,5))*$tempFactor[$sensor]+$tempDelta[$sensor],1); 
 				if ((int)$temp>$osensor->tempWarningMax)
 					{
 					$err=new ErrorEntry($id,21);
