@@ -97,7 +97,7 @@ $fp = fopen("/tmp/lock.txt", "r+");
 			if ($bFound)
 			{
 				$osensor=SensorFactory::getSensor($id);
-				$humid=floatval(substr($output[$i],11,5))*humFactor[$sensor]+$humDelta[$sensor]; 
+				$humid=floatval(substr($output[$i],11,5))*$humFactor[$sensor]+$humDelta[$sensor]; 
 				if ((int)$humid>$osensor->humWarningMax)
 					{
 					$err=new ErrorEntry($id,11);
@@ -108,7 +108,7 @@ $fp = fopen("/tmp/lock.txt", "r+");
 					$err=new ErrorEntry($id,10);
 					$err->writeToDB($db);
 					}
-				$temp=floatval(substr($output[$i],33,5))*tempFactor[$sensor]+$tempDelta[$sensor]; 
+				$temp=floatval(substr($output[$i],33,5))*$tempFactor[$sensor]+$tempDelta[$sensor]; 
 				if ((int)$temp>$osensor->tempWarningMax)
 					{
 					$err=new ErrorEntry($id,21);
