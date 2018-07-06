@@ -130,7 +130,7 @@ class DiagrammScriptCreator
 		for ($i=0;$i<count($sensors);$i++)
 			{
 				$p=$sensors[$i]->pin;
-				$q=$q."(select round(avg(t$i.temperature),1) from datalogger as t$i where t$i.sensor=$p and t$i.measureid=m.id group by $i0.measureid) as tt$i"
+				$q=$q."(select round(avg(t$i.temperature),1) from datalogger as t$i where t$i.sensor=$p and t$i.measureid=m.id group by $i0.measureid) as tt$i ";
 			#$q=$q."round(avg(CASE WHEN h.sensor = ".$sensors[$i]->pin." THEN h.$field END),1) as t$i ";
 			if ($i+1<count($sensors))
 				$q=$q.", ";		
