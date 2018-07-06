@@ -242,6 +242,7 @@ class Sensor
 		
 		$sql="select avg(temperature), avg(humidity) from datalogger where sensor = ".$this->pin."  GROUP BY UNIX_TIMESTAMP(date_time) DIV 600 ORDER BY date_time DESC LIMIT 2";
 		$sql="SELECT round(avg(temperature),1), round(avg(humidity),1) FROM measure as m left join datalogger d on d.sensor=".$this->pin." and d.measureid=m.id where active = 1 group by m.id ORDER BY date_time DESC limit 2 ";
+		echo($sql);
 		$result = mysqli_query($conn, $sql);
 		if ($row = mysqli_fetch_array($result))
 			{
