@@ -23,7 +23,7 @@ function selectSensor($pin)
 function readSensor($db) 
 { 
 	$humFactor=[0.66,0.84,1,0.66,0.92,0.75,1,1];
-	$humDelta=[0,0,0,0,0,0,0,0];
+	$humDelta=[0,0,0,-5,0,0,0,0];
 	$tempFactor=[1,1,1,1,1,1,1,1];
 	$tempDelta=[0,0,0,0,0,0,0,0];
 if (!file_exists("/tmp/lock.txt"))
@@ -153,7 +153,7 @@ $box1Sensor=SensorFactory::getBox1Sensor();
 $box1Value=$box1Sensor->getValue($db);
 $box2Sensor=SensorFactory::getBox2Sensor();
 $box2Value=$box2Sensor->getValue($db);
-$humTolerance=5;
+$humTolerance=15;
 
 if ($inValue->isValid() && $box1Value->isValid())
 	{
