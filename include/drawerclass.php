@@ -130,7 +130,7 @@ class DiagrammScriptCreator
 		for ($i=0;$i<count($sensors);$i++)
 			{
 				$p=$sensors[$i]->pin;
-				$q=$q."(select round(avg(t$i.temperature),1) from datalogger as t$i where t$i.sensor=$p and t$i.measureid=m.id group by t$i.measureid) as tt$i ";
+				$q=$q."(select round(avg(t$i.$field),1) from datalogger as t$i where t$i.sensor=$p and t$i.measureid=m.id group by t$i.measureid) as tt$i ";
 			#$q=$q."round(avg(CASE WHEN h.sensor = ".$sensors[$i]->pin." THEN h.$field END),1) as t$i ";
 			if ($i+1<count($sensors))
 				$q=$q.", ";		
@@ -142,7 +142,7 @@ class DiagrammScriptCreator
 
 	$ds=mysqli_query($db, $q); 
 	$rows=mysqli_num_rows($ds);
-	echo($q);
+	#echo($q);
 	if ($rows==0)
 		return ;
 		?>
