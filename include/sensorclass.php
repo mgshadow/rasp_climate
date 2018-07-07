@@ -77,7 +77,7 @@ class SensorValue
 	
 	function isValid()
 		{
-		return !($this->age>10);
+		return !($this->age>15);#if the measurement is older than 15min, than it is not valid anymore.
 		}	
 	}
 
