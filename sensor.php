@@ -160,9 +160,14 @@ if ($inValue->isValid() && $box1Value->isValid())
 	echo ("\nCheck box1");
 	if ($box1Value->hum < $inValue->hum - $humTolerance)
 		{
-		$err=new ErrorEntry($box1Sensor->pin,12);
-		$err->writeToDB($db);
-		echo ("\nValue not OK");
+		if (!$box1Sensor->isValueOk($box1Value))
+		{
+			$err=new ErrorEntry($box1Sensor->pin,12);
+			$err->writeToDB($db);
+			echo ("\nValue not OK");	
+		}
+		else
+			echo ("\nSmall div but value OK");
 		}
 	else
 		echo ("\nValueOK");
@@ -172,9 +177,14 @@ if ($inValue->isValid() && $box2Value->isValid())
 	echo ("\nCheck box2");
 	if ($box2Value->hum < $inValue->hum - $humTolerance)
 		{
-		$err=new ErrorEntry($box2Sensor->pin,12);
-		$err->writeToDB($db);
-		echo ("\nValue not OK");
+		if (!$box2Sensor->isValueOk($box2Value))
+		{
+			$err=new ErrorEntry($box2Sensor->pin,12);
+			$err->writeToDB($db);
+			echo ("\nValue not OK");	
+		}	
+		else		
+			echo ("\nSmall div but value OK");		
 		}
 	else
 		echo ("\nValueOK");

@@ -216,6 +216,19 @@ class Sensor
 	    
 	       
     	}
+		
+	function isValueOk($value)
+	{
+		if ($value->temp<$this->tempGreenFrom)
+			return false;
+		if ($value->temp>$this->tempGreenTo)
+			return false;
+		if ($value->hum<$this->humGreenFrom)
+			return false;
+		if ($value->hum>$this->humGreenTo)
+			return false;
+		return true;
+	}
     
     function getValue($conn)
     	{
