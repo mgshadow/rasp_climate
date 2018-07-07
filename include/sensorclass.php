@@ -244,7 +244,7 @@ class Sensor
 
 		if ($row = mysqli_fetch_array($result))
 			{
-			if ($row[2]<10)
+			if ($row[2]<15)
 				{
 				$t=$row[0]+$this->tempDelta;
 				$h=$row[1]+$this->humDelta;
