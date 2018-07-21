@@ -214,7 +214,7 @@ class DiagrammScriptCreator
 	curveType: 'none',
 	legend: { position: 'bottom' },
 	vAxis: { ticks: <?php echo($ticks) ?>, minorGridlines: {count: <?php echo($minorCount)?>} },
-	hAxis: { textPosition: 'none', direction: '1', gridlines: {count: <?php echo($duration)?>}, minorGridlines: {count: 3} },
+	hAxis: { textPosition: 'none', direction: '1', gridlines: {count: <?php echo($duration)?>} },
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('<?php echo($divname) ?>'));
