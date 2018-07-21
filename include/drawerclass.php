@@ -161,7 +161,7 @@ class DiagrammScriptCreator
 	$max=0;
 	while($r = mysqli_fetch_array($ds)) 
 	{ 
-		echo "[new Date(".$r[0]."), "; 
+		echo "[new Date('".$r[0]."'), "; 
 		for ($i=0;$i<count($sensors);$i++)
 			{
 			switch ($type)
