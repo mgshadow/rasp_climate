@@ -39,6 +39,9 @@ $fp = fopen("/tmp/lock.txt", "r+");
 	
 	if (flock($fp, LOCK_EX | LOCK_NB)) 
 	{  // acquire an exclusive lock
+
+		system("gpio mode 0 out");
+		system("/usr/local/bin/gpio write 0 1 "); 
 		
 		$sql="INSERT INTO `measure`(`date_time`, `active`) VALUES (now(),0)";
 		$result = mysqli_query($db, $sql);
@@ -130,6 +133,8 @@ $fp = fopen("/tmp/lock.txt", "r+");
 		$q = "update measure set active=1 where id=$measureId"; 
 		echo ("\n\t\t".$q);
 		mysqli_query($db, $q); 
+		
+		system("/usr/local/bin/gpio write 0 0 "); 
 				
 	}
 	else
