@@ -2,7 +2,7 @@
 function delOld(){
 $db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 mysqli_select_db($db, "datalogger");
-$q="delete from datalogger where pwm>60"; 
+$q="delete from datalogger where pwm>30"; 
 mysqli_query($db, $q);
 
 $q="update datalogger set pwm=pwm+1";
@@ -34,10 +34,10 @@ mysqli_close($db);
 
 return 0; 
 } 
-hist(7);
-hist(8); 
-hist(9); 
-hist(21); 
+hist(0);
+hist(1); 
+hist(2); 
+hist(3); 
 delOld();
 ?>
 
