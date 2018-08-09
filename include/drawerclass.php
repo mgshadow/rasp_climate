@@ -177,6 +177,10 @@ class DiagrammScriptCreator
 				$max=$v;
 			if ($v<$min)
 				$min=$v;
+			if ($r[$i+1] == null)
+			{
+				$v="null";
+			}
 			echo " $v,"; 
 			}
 		echo "],"; 
