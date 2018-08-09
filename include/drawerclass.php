@@ -173,13 +173,17 @@ class DiagrammScriptCreator
 				$v=$sensors[$i]->humDelta+$r[$i+1];
 				break;
 			}
+			
+			if ($r[$i+1] == null)
+			{
+				$v="null";
+			}
+			else
+			{
 			if ($v>$max)
 				$max=$v;
 			if ($v<$min)
 				$min=$v;
-			if ($r[$i+1] == null)
-			{
-				$v="null";
 			}
 			echo " $v,"; 
 			}
