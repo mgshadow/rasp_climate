@@ -75,7 +75,14 @@ $fp = fopen("/tmp/lock.txt", "r+");
 						if (substr($output[$i],0,1)=="H")
 						{
 							#echo("\n*Found*");
-							$bFound=true;
+							
+							$temp=round(floatval(substr($output[$i],33,5))*$tempFactor[$sensor]+$tempDelta[$sensor],1);
+							if ($temp>0)
+							{
+								//if there are measurement errors, the temperature is 0, so lets ignore them
+								$bFound=true;
+							}
+							
 						}
 						
 						if (substr($output[$i],0,4)=="Lock")
