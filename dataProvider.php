@@ -1,6 +1,5 @@
 <?php 
 include("./include/sensorclass.php");
-include("./include/drawerclass.php");
 
 
 $inSensor=SensorFactory::getInsideSensor();
@@ -76,6 +75,7 @@ while($r = mysqli_fetch_array($result))
 }
 echo json_encode(array('querystringDuration'=>$_GET['duration'],
 		       'duration'=>$duration,
+		       'sql'=>$sql,
 		       'data:' => $data));
 ?>
 
