@@ -14,9 +14,6 @@ $result = mysqli_query($db, $sql);
 $first=1;
 ?>
 {
-"SQL":"<?php 
-echo ($sql); 
-?>",
 "Data":
 [
 <?php
@@ -29,7 +26,7 @@ while($r = mysqli_fetch_array($result))
   $first=0;
   $line=$line.'{';
   #$line=$line.'"date": "Date('.substr($r[0],0,4).','.(((int)substr($r[0],5,2))-1).','.substr($r[0],8,2).','.substr($r[0],11,2).','.substr($r[0],14,2).','.substr($r[0],17,2).')", ';
-  $line=$line.'"date": "$r[0]", ';
+  $line=$line.'"date": "'.$r[0].'", ';
   $line=$line.'"sensors": [';
   $line=$line.'{"name":"aussen","temperature":'.$r[1].',"humidity":'.$r[2].'}, ';
   $line=$line.'{"name":"innen","temperature":'.$r[3].',"humidity":'.$r[4].'}, ';
