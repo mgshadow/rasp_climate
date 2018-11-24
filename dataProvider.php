@@ -4,7 +4,7 @@
 
 $db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
 mysqli_select_db($db, "datalogger");
-$sql  = 'SELECT min(m.date_time), ";
+$sql  = "SELECT min(m.date_time), ";
 $sql=$sql."round(avg(t0.temperature),1) as tt0, round(avg(t0.humidity),1) as th0, ";
 $sql=$sql."round(avg(t1.temperature),1) as tt1, round(avg(t1.humidity),1) as th1, ";
 $sql=$sql."round(avg(t2.temperature),1) as tt2, round(avg(t2.humidity),1) as th2, ";
