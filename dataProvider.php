@@ -13,12 +13,12 @@ while($r = mysqli_fetch_array($result))
 		
 
   $line="{";
-  $line+="new Date(".substr($r[0],0,4).",".(((int)substr($r[0],5,2))-1).",".substr($r[0],8,2).",".substr($r[0],11,2).",".substr($r[0],14,2).",".substr($r[0],17,2)."), ";
-  $line+=$r[1].", ";
-  $line+=$r[2].", ";
-  $line+=$r[3].", ";
-  $line+=$r[4].", ";
-  $line+="}";
+  $line=$line."new Date(".substr($r[0],0,4).",".(((int)substr($r[0],5,2))-1).",".substr($r[0],8,2).",".substr($r[0],11,2).",".substr($r[0],14,2).",".substr($r[0],17,2)."), ";
+  $line=$line.$r[1].", ";
+  $line=$line.$r[2].", ";
+  $line=$line.$r[3].", ";
+  $line=$line.$r[4].", ";
+  $line=$line."}";
   echo ($line);
 }
 ?>
