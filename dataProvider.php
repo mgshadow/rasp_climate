@@ -18,7 +18,7 @@ while($r = mysqli_fetch_array($result))
   $line+=$r[2].", ";
   $line+=$r[3].", ";
   $line+=$r[4].", ";
-  $line="}";
+  $line+="}";
   echo ($line);
 }
 ?>
