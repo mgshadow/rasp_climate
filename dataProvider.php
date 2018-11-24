@@ -19,8 +19,8 @@ $result = mysqli_query($db, $sql);
 $first=1;
 ?>
 {
-"querystringDuration": <?php echo($_SERVER['duration']); ?>
-"duration": <?php echo($duration); ?>
+"querystringDuration": "<?php echo($_SERVER['duration']); ?>",
+"duration": <?php echo($duration); ?>,
 "data":
 [
 <?php
