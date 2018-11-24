@@ -3,8 +3,8 @@
  header("Content-Type: application/json");
 
 $duration=3;
-if ($_SERVER['QUERY_STRING']['duration']!=null)
-	$duration=(int)$_SERVER['duration'];
+if ($_GET['duration']!=null)
+	$duration=(int)$_GET['duration'];
 
 $db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
 mysqli_select_db($db, "datalogger");
@@ -19,7 +19,7 @@ $result = mysqli_query($db, $sql);
 $first=1;
 ?>
 {
-"querystringDuration": "<?php echo($_SERVER['QUERY_STRING']['duration']); ?>",
+"querystringDuration": "<?php echo($_GET['duration']); ?>",
 "duration": <?php echo($duration); ?>,
 "data":
 [
