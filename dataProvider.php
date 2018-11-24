@@ -14,7 +14,9 @@ $result = mysqli_query($db, $sql);
 $first=1;
 ?>
 {
-"SQL":"<?php echo ($sql); ?>",
+"SQL":"<?php 
+echo ($sql); 
+?>",
 "Data":
 [
 <?php
