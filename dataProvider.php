@@ -25,7 +25,7 @@ while($r = mysqli_fetch_array($result))
 
   $first=0;
   $line=$line.'{';
-  $line=$line.'"date": {"year": '.substr($r[0],0,4).', "month": '.(((int)substr($r[0],5,2))-1).', "day": '.((int)substr($r[0],8,2)).', "hour":'.((int)substr($r[0],11,2)).',"minute": '.((int)substr($r[0],14,2)).',"second":'.((int)substr($r[0],17,2)).'}, ';
+  $line=$line.'"date": {"years": '.substr($r[0],0,4).', "months": '.(((int)substr($r[0],5,2))-1).', "days": '.((int)substr($r[0],8,2)).', "hours":'.((int)substr($r[0],11,2)).',"minutes": '.((int)substr($r[0],14,2)).',"seconds":'.((int)substr($r[0],17,2)).'}, ';
   #$line=$line.'"date": "new Date('.substr($r[0],0,4).','.(((int)substr($r[0],5,2))-1).','.substr($r[0],8,2).','.substr($r[0],11,2).','.substr($r[0],14,2).','.substr($r[0],17,2).'), ';
   #$line=$line.'"date": "'.$r[0].'", ';
   $line=$line.'"sensors": [';
