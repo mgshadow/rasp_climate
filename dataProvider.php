@@ -24,7 +24,7 @@ for ($sensorIndex=0;$sensorIndex<count($sensors);$sensorIndex++)
 	$p=$sensors[$sensorIndex]->pin;
 	$sql=$sql."round(avg(t$p.temperature),1) as tt$p, round(avg(t$p.humidity),1) as th$p ";
 	if ($sensorIndex+1<count($sensors))
-		$q=$q.", ";
+		$sql=$sql.", ";
 	}
 $sql=$sql."FROM measure m ";
 for ($sensorIndex=0;$sensorIndex<count($sensors);$sensorIndex++)
