@@ -130,17 +130,18 @@ class DiagrammScriptCreator
 		for ($i=0;$i<count($sensors);$i++)
 			{
 				$p=$sensors[$i]->pin;
-				$q=$q."round(avg(t$i.$field),1) as tt$i";
+				$q=$q."round(avg(t$i.$field),1) as tt$i ";
 			if ($i+1<count($sensors))
 				$q=$q.", ";		
 			}
+		$q=$q."FROM measure m ";
 		for ($i=0;$i<count($sensors);$i++)
 			{
 				$p=$sensors[$i]->pin;
 				$q=$q."left join datalogger as t$i on t$i.sensor=$p and t$i.measureid=m.id ";		
 			}
-	$q=$q."FROM measure m ";
-	$q=$q. "WHERE m.active=1 and TIMESTAMPDIFF(HOUR,date_time,NOW())<$duration ";		
+	
+	$q=$q. "WHERE m.active=1 and TIMESTAMPDIFF(HOUR,m.date_time,NOW())<$duration ";		
 	#$q=$q."GROUP BY UNIX_TIMESTAMP(date_time) DIV $div ";
 	$q=$q."GROUP BY m.date_time ";
 	$q=$q."order by m.date_time"; 
