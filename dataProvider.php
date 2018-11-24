@@ -22,11 +22,11 @@ while($r = mysqli_fetch_array($result))
   $line=$line.'{';
   #$line=$line.'"date": "Date('.substr($r[0],0,4).','.(((int)substr($r[0],5,2))-1).','.substr($r[0],8,2).','.substr($r[0],11,2).','.substr($r[0],14,2).','.substr($r[0],17,2).')", ';
   $line=$line.'"date": "$r[0]", ';
-  $line=$line.'"Values": [';
-  $line=$line.'{"out":'.$r[1].'}, ';
-  $line=$line.'{"room":'.$r[2].'}, ';
-  $line=$line.'{"one":'.$r[3].'}, ';
-  $line=$line.'{"two":'.$r[4].'}';
+  $line=$line.'"values": [';
+  $line=$line.'{"name":"aussen","value":'.$r[1].'}, ';
+  $line=$line.'{"name":"innen","value":'.$r[2].'}, ';
+  $line=$line.'{"name":"eins","value":'.$r[3].'}, ';
+  $line=$line.'{"name":"zwei","value":'.$r[4].'}';
   $line=$line.']';	
   $line=$line.'}';
   echo ($line);
