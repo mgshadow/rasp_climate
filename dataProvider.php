@@ -9,7 +9,7 @@ $sql=$sql."round(avg(t0.temperature),1) as tt0, round(avg(t0.humidity),1) as th0
 $sql=$sql."round(avg(t1.temperature),1) as tt1, round(avg(t1.humidity),1) as th1, ";
 $sql=$sql."round(avg(t2.temperature),1) as tt2, round(avg(t2.humidity),1) as th2, ";
 $sql=$sql."round(avg(t3.temperature),1) as tt3, round(avg(t3.humidity),1) as th3 ";
-$sql=$sql."FROM measure m left join datalogger as t0 on t0.sensor=0 and t0.measureid=m.id left join datalogger as t1 on t1.sensor=1 and t1.measureid=m.id left join datalogger as t2 on t2.sensor=2 and t2.measureid=m.id left join datalogger as t3 on t3.sensor=3 and t3.measureid=m.id WHERE m.active=1 and TIMESTAMPDIFF(HOUR,m.date_time,NOW())<30 GROUP BY m.date_time order by m.date_time";
+$sql=$sql."FROM measure m left join datalogger as t0 on t0.sensor=0 and t0.measureid=m.id left join datalogger as t1 on t1.sensor=1 and t1.measureid=m.id left join datalogger as t2 on t2.sensor=2 and t2.measureid=m.id left join datalogger as t3 on t3.sensor=3 and t3.measureid=m.id WHERE m.active=1 and TIMESTAMPDIFF(HOUR,m.date_time,NOW())<60 GROUP BY m.date_time order by m.date_time";
 $result = mysqli_query($db, $sql);
 $first=1;
 ?>
