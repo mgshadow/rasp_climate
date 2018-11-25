@@ -62,23 +62,11 @@ while($r = mysqli_fetch_array($result))
   	}
   $data[]=array('date' => $arrDate,
 		'sensors' => $arrSensors);
-  #$line=$line.'{';
-  #$line=$line.'"date": {"years": '.substr($r[0],0,4).', "months": '.(((int)substr($r[0],5,2))-1).', "days": '.((int)substr($r[0],8,2)).', "hours":'.((int)substr($r[0],11,2)).',"minutes": '.((int)substr($r[0],14,2)).',"seconds":'.((int)substr($r[0],17,2)).'}, ';
-  #$line=$line.'"date": "new Date('.substr($r[0],0,4).','.(((int)substr($r[0],5,2))-1).','.substr($r[0],8,2).','.substr($r[0],11,2).','.substr($r[0],14,2).','.substr($r[0],17,2).'), ';
-  #$line=$line.'"date": "'.$r[0].'", ';
-  #$line=$line.'"sensors": [';
-  #$line=$line.'{"name":"aussen","temperature":'.$r[1].',"humidity":'.$r[2].'}, ';
-  #$line=$line.'{"name":"innen","temperature":'.$r[3].',"humidity":'.$r[4].'}, ';
-  #$line=$line.'{"name":"eins","temperature":'.$r[5].',"humidity":'.$r[6].'}, ';
-  #$line=$line.'{"name":"zwei","temperature":'.$r[7].',"humidity":'.$r[8].'} ';
-  #$line=$line.']';	
-  #$line=$line.'}';
-  #echo ($line);
 }
 echo json_encode(array('querystringDuration'=>$_GET['duration'],
 		       'duration'=>$duration,
 		       'sql'=>$sql,
-		       'data:' => $data));
+		       'data' => $data));
 ?>
 
 
