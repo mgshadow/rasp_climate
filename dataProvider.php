@@ -54,8 +54,8 @@ while($r = mysqli_fetch_array($result))
   for ($sensorIndex=0;$sensorIndex<count($sensors);$sensorIndex++)
 	{
 	$name=$sensors[$sensorIndex]->name;
-	$temperature=$r[$sensorIndex+1]==null?"null":$r[$sensorIndex+1];
-	$humidity=$r[$sensorIndex+2]==null?"null":$r[$sensorIndex+2];
+	$temperature=$r[$sensorIndex*2+1]==null?"null":$r[$sensorIndex*2+1];
+	$humidity=$r[$sensorIndex*2+2]==null?"null":$r[$sensorIndex*2+2];
 	$arrSensors[]=array('name' => $name,
 			    'temperature' => $temperature,
 			    'humidity' => $humidity,);
