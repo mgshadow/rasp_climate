@@ -317,12 +317,14 @@ if ($errorcount>0)
 		function displayData() {
 			
 				var colors=[];
-				colors.push({color: "rgb(200,200,200)"});
 				colors.push({color: "rgb(150,150,150)"});
-				colors.push({color: "rgb(100,100,100)"});
+				colors.push({color: "rgb(200,200,200)"});
 				colors.push({color: "rgb(50,50,50)"});
-				colors.push({color: window.chartColors.green});
-				colors.push({color: window.chartColors.red});
+				colors.push({color: "rgb(100,100,100)"});
+				colors.push({color: "rgb(0,200,0)"});
+				colors.push({color: "rgb(50,200,50)"};
+				colors.push({color: "rgb(0,0,200)"});
+				colors.push({color: "rgb(50,50,200)"});
 							
 			loadData().then(function(data)
 				{
@@ -361,16 +363,16 @@ if ($errorcount>0)
 						}
 						lineChartData.datasets.push({
 								label: "Temperatur "+data[0].sensors[sensor].name, 
-								borderColor: colors[sensor].color,
-								backgroundColor: colors[sensor].color,
+								borderColor: colors[2*sensor].color,
+								backgroundColor: colors[2*sensor].color,
 								fill: false,	
 								pointRadius: 0,							
 								data: temperatures, 
 								yAxisID: 'y-axis-temp' });
 						lineChartData.datasets.push({
 								label: "Luftfeuchtigkeit "+data[0].sensors[sensor].name, 
-								borderColor: colors[sensor].color,
-								backgroundColor: colors[sensor].color,
+								borderColor: colors[2*sensor+1].color,
+								backgroundColor: colors[2*sensor+1].color,
 								fill: false,	
 								pointRadius: 0,
 								hidden:true,
