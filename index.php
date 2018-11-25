@@ -322,7 +322,7 @@ if ($errorcount>0)
 				colors.push({color: "rgb(50,50,50)"});
 				colors.push({color: "rgb(100,100,100)"});
 				colors.push({color: "rgb(0,200,0)"});
-				colors.push({color: "rgb(50,200,50)"};
+				colors.push({color: "rgb(50,200,50)"});
 				colors.push({color: "rgb(0,0,200)"});
 				colors.push({color: "rgb(50,50,200)"});
 							
