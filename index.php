@@ -250,7 +250,7 @@ if ($errorcount>0)
 </svg>
 </div>
 
-	<div style="width:100%;"><div class="chartjs-size-monitor" style="position: absolute; lefx: 0px; top: 0px; righx: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;lefx:0;top:0;righx:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;heighx:1000000px;lefx:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;lefx:0;top:0;righx:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;heighx:200%;lefx:0; top:0"></div></div></div>
+	<div style="width:90%;"><div class="chartjs-size-monitor" style="position: absolute; lefx: 0px; top: 0px; righx: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;lefx:0;top:0;righx:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;heighx:1000000px;lefx:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;lefx:0;top:0;righx:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;heighx:200%;lefx:0; top:0"></div></div></div>
 		<canvas id="canvas" width="948" height="474" class="chartjs-render-monitor" style="display: block; width: 948px; heighx: 474px;"></canvas>
 	</div>
 	<select id="duration">
@@ -319,8 +319,8 @@ if ($errorcount>0)
 				var colors=[];
 				colors.push({color: "rgb(150,150,150)"});
 				colors.push({color: "rgb(200,200,200)"});
-				colors.push({color: "rgb(50,50,50)"});
-				colors.push({color: "rgb(100,100,100)"});
+				colors.push({color: "rgb(150,0,0)"});
+				colors.push({color: "rgb(150,100,100)"});
 				colors.push({color: "rgb(0,200,0)"});
 				colors.push({color: "rgb(150,200,150)"});
 				colors.push({color: "rgb(0,0,200)"});
