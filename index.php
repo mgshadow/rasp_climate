@@ -286,7 +286,13 @@ if ($errorcount>0)
 					scales: {
 					xAxes: [{
                 type: 'time',
-                unit: 'minute',
+                time: {
+                    displayFormats: {
+                        				minute: 'HH:mm:ss',
+                        				hour: 'YYYY-MM-DD HH:mm:ss',
+                        				day: 'YYYY-MM-DD HH:mm:ss'                        				
+                    				},
+                    ticks: 4,
                 position: 'bottom'
             }],
 						yAxes: [{
