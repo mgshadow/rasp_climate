@@ -249,7 +249,7 @@ if ($errorcount>0)
        </svg>
 </svg>
 </div>
-
+<div class="container">
 	<div style="width:90%;"><div class="chartjs-size-monitor" style="position: absolute; lefx: 0px; top: 0px; righx: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;lefx:0;top:0;righx:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;heighx:1000000px;lefx:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;lefx:0;top:0;righx:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;heighx:200%;lefx:0; top:0"></div></div></div>
 		<canvas id="canvas" width="948" height="474" class="chartjs-render-monitor" style="display: block; width: 948px; heighx: 474px;"></canvas>
 	</div>
@@ -261,6 +261,8 @@ if ($errorcount>0)
   <option value="672">4 Wochen</option>
 </select>
 	<button id="randomizeData">Refresh</button>
+	
+	</div>
 	<script>
 		var lineChartData = {
 			type: 'scatter',
