@@ -238,8 +238,8 @@ class Sensor
     	$ht=3;
     	$a=9999;
     	$d="never";
-    	$sql = "SELECT avg(temperature), avg(humidity),min(TIMESTAMPDIFF(MINUTE,date_time,NOW())) as age, min(date_time) FROM datalogger where sensor = ".$this->pin."  GROUP BY UNIX_TIMESTAMP(date_time) DIV 60 ORDER BY date_time DESC LIMIT 1";		
-		$sql="SELECT round(avg(temperature),1), round(avg(humidity),1), TIMESTAMPDIFF(MINUTE,m.date_time,NOW()) as age, m.date_time, m.id FROM measure as m left join datalogger d on d.sensor=".$this->pin." and d.measureid=m.id where active = 1 group by m.id ORDER BY m.date_time DESC limit 1 ";
+    	$sql = "SELECT avg(temperature), avg(humidity),min(TIMESTAMPDIFF(MINUTE,date_time,NOW())) as age, min(date_time) FROM datalogger where sensor = ".$this->pin."  GROUP BY UNIX_TIMESTAMP(date_time) DIV 60 ORDER BY measureid DESC LIMIT 1";		
+		$sql="SELECT round(avg(temperature),1), round(avg(humidity),1), TIMESTAMPDIFF(MINUTE,m.date_time,NOW()) as age, m.date_time, m.id FROM measure as m left join datalogger d on d.sensor=".$this->pin." and d.measureid=m.id where active = 1 group by m.id ORDER BY m.id DESC limit 1 ";
 		$result = mysqli_query($conn, $sql);
 
 		if ($row = mysqli_fetch_array($result))
@@ -253,8 +253,8 @@ class Sensor
 			$d=$row[3];
 			}
 		
-		$sql="select avg(temperature), avg(humidity) from datalogger where sensor = ".$this->pin."  GROUP BY UNIX_TIMESTAMP(date_time) DIV 600 ORDER BY date_time DESC LIMIT 2";
-		$sql="SELECT round(avg(temperature),1), round(avg(humidity),1) FROM measure as m left join datalogger d on d.sensor=".$this->pin." and d.measureid=m.id where active = 1 group by m.id ORDER BY m.date_time DESC limit 2 ";
+		$sql="select avg(temperature), avg(humidity) from datalogger where sensor = ".$this->pin."  GROUP BY UNIX_TIMESTAMP(date_time) DIV 600 ORDER BY measureid DESC LIMIT 2";
+		$sql="SELECT round(avg(temperature),1), round(avg(humidity),1) FROM measure as m left join datalogger d on d.sensor=".$this->pin." and d.measureid=m.id where active = 1 group by m.id ORDER BY m.id DESC limit 2 ";
 		#echo($sql);
 		$result = mysqli_query($conn, $sql);
 		if ($row = mysqli_fetch_array($result))

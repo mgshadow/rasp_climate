@@ -126,19 +126,25 @@ class DiagrammScriptCreator
 		$db=$this->conn;
 
 		$q="";
-		$q=$q."SELECT date_time, ";
+		$q=$q."SELECT min(m.date_time), ";
 		for ($i=0;$i<count($sensors);$i++)
 			{
 				$p=$sensors[$i]->pin;
-				$q=$q."(select round(avg(t$i.$field),1) from datalogger as t$i where t$i.sensor=$p and t$i.measureid=m.id group by t$i.measureid) as tt$i ";
-			#$q=$q."round(avg(CASE WHEN h.sensor = ".$sensors[$i]->pin." THEN h.$field END),1) as t$i ";
+				$q=$q."round(avg(t$i.$field),1) as tt$i ";
 			if ($i+1<count($sensors))
 				$q=$q.", ";		
 			}
-	$q=$q."FROM measure m ";
-	$q=$q. "WHERE m.active=1 and TIMESTAMPDIFF(HOUR,date_time,NOW())<$duration ";		
+		$q=$q."FROM measure m ";
+		for ($i=0;$i<count($sensors);$i++)
+			{
+				$p=$sensors[$i]->pin;
+				$q=$q."left join datalogger as t$i on t$i.sensor=$p and t$i.measureid=m.id ";		
+			}
+	
+	$q=$q. "WHERE m.active=1 and TIMESTAMPDIFF(HOUR,m.date_time,NOW())<$duration ";		
 	#$q=$q."GROUP BY UNIX_TIMESTAMP(date_time) DIV $div ";
-	$q=$q."order by m.date_time"; 
+	$q=$q."GROUP BY m.date_time ";
+	$q=$q."order by m.id"; 
 
 	$ds=mysqli_query($db, $q); 
 	$rows=mysqli_num_rows($ds);

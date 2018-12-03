@@ -33,8 +33,10 @@ $errorcount+=$box2Sensor->getErrorCount($db);
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script async="" src="./scripts/analytics.js"></script><script src="./scripts/Chart.bundle.js"></script><style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+<script src="./scripts/utils.js"></script>
    
 
 </head>
@@ -247,11 +249,173 @@ if ($errorcount>0)
        </svg>
 </svg>
 </div>
+<div class="container">
+	<div style="width:90%;"><div class="chartjs-size-monitor" style="position: absolute; lefx: 0px; top: 0px; righx: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;lefx:0;top:0;righx:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;heighx:1000000px;lefx:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;lefx:0;top:0;righx:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;heighx:200%;lefx:0; top:0"></div></div></div>
+		<canvas id="canvas" width="948" height="474" class="chartjs-render-monitor" style="display: block; width: 948px; heighx: 474px;"></canvas>
+	</div>
+	<select id="duration">
+  <option value="3">3 Stunden</option>
+  <option value="24">1 Tag</option>
+  <option value="96">4 Tage</option>
+  <option value="168">1 Woche</option>
+  <option value="672">4 Wochen</option>
+</select>
+	<button id="randomizeData">Refresh</button>
+	
+	</div>
+	<script>
+		var lineChartData = {
+			type: 'scatter',
+			
+		};
 
-	<?php  $creator->CreateXY(array($outSensor,$inSensor, $box1Sensor,$box2Sensor), 3); ?>
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myLine = Chart.Line(ctx, {
+				data: lineChartData,
+				options: {
+					responsive: true,
+					hoverMode: 'index',
+					stacked: false,
+					title: {
+						display: true,
+						texx: 'Chart.js Line Chart - Multi Axis'
+					},
+					legend: {
+					position: 'right'},
+					scales: {
+					xAxes: [{
+                type: 'time',
+                time: {
+                    displayFormats: {
+                        				minute: 'HH:mm:ss',
+                        				hour: 'YYYY-MM-DD HH:mm:ss',
+                        				day: 'YYYY-MM-DD HH:mm:ss'                        				
+                    				},
+				ticks: 4,},
+                position: 'bottom'
+            }],
+						yAxes: [{
+							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+							display: true,
+							position: 'left',
+							id: 'y-axis-temp',
+						}, {
+							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+							display: true,
+							position: 'right',
+							id: 'y-axis-hum',
 
+							// grid line settings
+							gridLines: {
+								drawOnChartArea: false, // only want the grid lines for one axis to show up
+							},
+						}],
+					}
+				}
+			});
+		};
 
-	<?php  $creator->CreateXY(array($outSensor,$inSensor, $box1Sensor,$box2Sensor), 24); ?>
+		document.getElementById('randomizeData').addEventListener('click', displayData );
+		document.getElementById('duration').addEventListener('change', displayData );
+		
+		
+		displayData();
+		
+		function displayData() {
+			
+				var colors=[];
+				colors.push({color: "rgb(150,150,150)"});
+				colors.push({color: "rgb(200,200,200)"});
+				colors.push({color: "rgb(150,0,0)"});
+				colors.push({color: "rgb(150,100,100)"});
+				colors.push({color: "rgb(0,200,0)"});
+				colors.push({color: "rgb(150,200,150)"});
+				colors.push({color: "rgb(0,0,200)"});
+				colors.push({color: "rgb(150,150,200)"});
+							
+			loadData().then(function(data)
+				{
+				console.log("got " + data.length + " records from dataProvider");
+//				console.log(data);
+				
+				lineChartData.datasets=[];
+				
+				for(var sensor=0;sensor<4;sensor++){
+					var temperatures = [];
+					var humidities = [];
+					for(var i=0; i<data.length;i++ ) {
+						//console.log(data[i]);
+						temperatures.push(
+							{
+								x: new Date(data[i].date.years,
+											data[i].date.months,
+											data[i].date.days,
+											data[i].date.hours,
+											data[i].date.minutes,
+											data[i].date.seconds) ,
+								y: data[i].sensors[sensor].temperature
+							});
+						
+						humidities.push(
+							{
+								x: new Date(data[i].date.years,
+											data[i].date.months,
+											data[i].date.days,
+											data[i].date.hours,
+											data[i].date.minutes,
+											data[i].date.seconds) ,
+								y: data[i].sensors[sensor].humidity
+							});
+						
+						}
+						lineChartData.datasets.push({
+								label: "Temperatur "+data[0].sensors[sensor].name, 
+								borderColor: colors[2*sensor].color,
+								backgroundColor: colors[2*sensor].color,
+								fill: false,	
+								pointRadius: 0,							
+								data: temperatures, 
+								yAxisID: 'y-axis-temp' });
+						lineChartData.datasets.push({
+								label: "Luftfeuchtigkeit "+data[0].sensors[sensor].name, 
+								borderColor: colors[2*sensor+1].color,
+								backgroundColor: colors[2*sensor+1].color,
+								fill: false,	
+								pointRadius: 0,
+								hidden:true,
+								data: humidities, 
+								yAxisID: 'y-axis-hum' });
+					}
+					//console.log(lineChartData.datasets);
+				window.myLine.update();
+				
+				});
+				
+				
+			
+		}
+		
+		
+		function loadData()
+			{
+			var duration=document.getElementById('duration').value;
+			console.log('Loading Data for duration ' + duration);
+			return window
+					.fetch('http://192.168.178.111/rasp_climate_dev/dataProvider.php?duration='+duration)
+					.then(function(r)
+						{				
+						return r.json()
+								.then(function(j)
+										{
+										console.log(j);
+										return j.data;
+										});
+				
+						});	
+			}
+		
+	</script>
 
 
 <div class="container"><hr>
