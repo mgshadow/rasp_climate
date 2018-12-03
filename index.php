@@ -292,7 +292,7 @@ if ($errorcount>0)
                         				hour: 'YYYY-MM-DD HH:mm:ss',
                         				day: 'YYYY-MM-DD HH:mm:ss'                        				
                     				},
-				ticks: 4,}
+				ticks: 4,},
                 position: 'bottom'
             }],
 						yAxes: [{
