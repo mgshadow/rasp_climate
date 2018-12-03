@@ -144,7 +144,7 @@ class DiagrammScriptCreator
 	$q=$q. "WHERE m.active=1 and TIMESTAMPDIFF(HOUR,m.date_time,NOW())<$duration ";		
 	#$q=$q."GROUP BY UNIX_TIMESTAMP(date_time) DIV $div ";
 	$q=$q."GROUP BY m.date_time ";
-	$q=$q."order by m.date_time"; 
+	$q=$q."order by m.id"; 
 
 	$ds=mysqli_query($db, $q); 
 	$rows=mysqli_num_rows($ds);
