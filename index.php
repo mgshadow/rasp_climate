@@ -288,9 +288,9 @@ if ($errorcount>0)
                 type: 'time',
                 time: {
                     displayFormats: {
-                        				minute: 'HH:mm:ss',
-                        				hour: 'YYYY-MM-DD HH:mm:ss',
-                        				day: 'YYYY-MM-DD HH:mm:ss'                        				
+                        				minute: 'HH:mm',
+                        				hour: 'YYYY-MM-DD HH:mm',
+                        				day: 'YYYY-MM-DD HH:mm'                        				
                     				},
 				ticks: 4,},
                 position: 'bottom'
