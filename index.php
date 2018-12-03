@@ -30,10 +30,11 @@ $errorcount+=$box2Sensor->getErrorCount($db);
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
 <title>Klima</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-<script async="" src="./scripts/analytics.js"></script>
-<script src="./scripts/Chart.bundle.js">
-</script><style type="text/css">/* Chart.js */
+<script async="" src="./scripts/analytics.js"></script><script src="./scripts/Chart.bundle.js"></script><style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
 <script src="./scripts/utils.js"></script>
    
