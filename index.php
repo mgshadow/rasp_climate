@@ -34,7 +34,7 @@ $errorcount+=$box2Sensor->getErrorCount($db);
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script async="" src="./scripts/analytics.js"></script><script src="./scripts/Chart.bundle.js"></script><style type="text/css">/* Chart.js */
+<script src="./scripts/Chart.bundle.js"></script><style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
 <script src="./scripts/utils.js"></script>
    
@@ -288,9 +288,9 @@ if ($errorcount>0)
                 type: 'time',
                 time: {
                     displayFormats: {
-                        				minute: 'HH:mm:ss',
-                        				hour: 'YYYY-MM-DD HH:mm:ss',
-                        				day: 'YYYY-MM-DD HH:mm:ss'                        				
+                        				minute: 'HH:mm',
+                        				hour: 'YYYY-MM-DD HH:mm',
+                        				day: 'YYYY-MM-DD HH:mm'                        				
                     				},
 				ticks: 4,},
                 position: 'bottom'
