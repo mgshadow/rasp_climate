@@ -402,7 +402,7 @@ if ($errorcount>0)
 			var duration=document.getElementById('duration').value;
 			console.log('Loading Data for duration ' + duration);
 			return window
-					.fetch('http://192.168.178.111/rasp_climate_dev/dataProvider.php?duration='+duration)
+					.fetch('http://192.168.178.35/rasp_climate_dev/dataProvider.php?duration='+duration)
 					.then(function(r)
 						{				
 						return r.json()
